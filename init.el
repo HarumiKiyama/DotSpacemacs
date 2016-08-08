@@ -27,12 +27,13 @@ values."
           erc-server "irc.freenode.net"
           erc-nick "uruk1993"
           erc-port "6667"
-          erc-password "429770814")
+          )
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
                       )
      better-defaults
+     gnus
      scheme
      java
      ;; mu4e
@@ -56,13 +57,13 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(w3m)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(emacs-eclim)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages nil))
+   dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -112,7 +113,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(dracula
-                         ;; monokai
+                         ;; molokai
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          ;; solarized-light
@@ -289,6 +290,8 @@ you should place your code here."
                              ))
   (setq org-archive-location "~/org-mode/archive.org::")
   (setq org-startup-truncated nil)
+  ;; GNUS setting
+  (setq )
   ;; UI setting
   (setq linum-format "%3s ")
   (spacemacs/toggle-vi-tilde-fringe-off)
