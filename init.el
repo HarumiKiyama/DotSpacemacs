@@ -33,7 +33,7 @@ values."
                       auto-completion-enable-sort-by-usage t
                       )
      better-defaults
-     gnus
+     ;; gnus
      scheme
      java
      ;; mu4e
@@ -57,7 +57,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(w3m)
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(emacs-eclim)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -290,8 +290,6 @@ you should place your code here."
                              ))
   (setq org-archive-location "~/org-mode/archive.org::")
   (setq org-startup-truncated nil)
-  ;; GNUS setting
-  (setq )
   ;; UI setting
   (setq linum-format "%3s ")
   (spacemacs/toggle-vi-tilde-fringe-off)
