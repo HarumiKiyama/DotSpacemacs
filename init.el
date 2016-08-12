@@ -38,7 +38,7 @@ values."
      java
      ;; mu4e
      ;; react
-     ;; django
+     django
      emacs-lisp
      smex
      git
@@ -269,18 +269,14 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; triggle on menu bar
   (menu-bar-mode t)
-  ;; chinese support
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
+
   ;; org-mode setting
   (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "SUSPEND(p)" "|"
                                       "DONE(d)" "ABORT(a)")))
   (setq org-capture-templates '(("t" "Todo" entry (file "~/org-mode/task.org" "Tasks")
                                  "** TODO %?\n")
                                 ))
-  (setq org-tag-alist '(("Project" . ?p) ("Algorithm" . ?a) ("ForMoney" . ?m) ("ForFun" . ?f)))
+  (setq org-tag-alist '(("Work" . ?w) ("Algorithm" . ?a) ("Trivial" . ?t)("Project" ?p)))
   (setq org-agenda-files '("~/org-mode/task.org"
                            "~/org-mode/notation.org"
                            "~/org-mode/routine.org"))
@@ -293,6 +289,11 @@ you should place your code here."
   ;; UI setting
   (setq linum-format "%3s ")
   (spacemacs/toggle-vi-tilde-fringe-off)
+  ;; chinese support
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+                      charset
+                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
 )
 
 
@@ -305,6 +306,9 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(custom-safe-themes
+   (quote
+    ("345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" default)))
  '(linum-relative-format "%3s ")
  '(nrepl-message-colors
    (quote
@@ -331,8 +335,7 @@ you should place your code here."
      (320 . "#8CD0D3")
      (340 . "#94BFF3")
      (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3")
- )
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
