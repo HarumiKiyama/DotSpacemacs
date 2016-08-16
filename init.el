@@ -65,6 +65,7 @@ values."
      ;; spell-checking
      syntax-checking
      version-control
+     uruk
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -282,21 +283,23 @@ you should place your code here."
   (menu-bar-mode t)
 
   ;; org-mode setting
-  (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "SUSPEND(p)" "|"
-                                      "DONE(d!)" "ABORT(a)")))
-  (setq org-capture-templates '(("t" "Todo" entry (file "~/org-mode/task.org" "Tasks")
-                                 "** TODO %?\n")
-                                ))
-  (setq org-tag-alist '(("Work" . ?w) ("Read" . ?r) ("Trivial" . ?t) ("Project" ?p) ("Primatology" ?g)))
-  (setq org-agenda-files '("~/org-mode/task.org"
-                           "~/org-mode/notation.org"
-                           "~/org-mode/routine.org"))
-  (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
-                             ("~/org-mode/notes.org" :maxlevel . 1)
-                             ("~/org-mode/someday.org" :maxlevel . 1)
-                             ))
-  (setq org-archive-location "~/org-mode/archive.org::")
-  (setq org-startup-truncated nil)
+  (with-eval-after-load 'org
+    (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "SUSPEND(p)" "|"
+                                        "DONE(d!)" "ABORT(a)")))
+    (setq org-capture-templates '(("t" "Todo" entry (file "~/org-mode/task.org" "Tasks")
+                                   "** TODO %?\n")
+                                  ))
+    (setq org-tag-alist '(("Work" . ?w) ("Read" . ?r) ("Trivial" . ?t) ("Project" ?p) ("Primatology" ?g)))
+    (setq org-agenda-files '("~/org-mode/task.org"
+                             "~/org-mode/notation.org"
+                             "~/org-mode/routine.org"))
+    (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
+                               ("~/org-mode/notes.org" :maxlevel . 1)
+                               ("~/org-mode/someday.org" :maxlevel . 1)
+                               ))
+    (setq org-archive-location "~/org-mode/archive.org::")
+    (setq org-startup-truncated nil)
+ )
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   ;; chinese support

@@ -10,6 +10,7 @@
  '(custom-safe-themes
    (quote
     ("345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" default)))
+ '(deft-directory "/home/uruk/org-mode")
  '(linum-relative-format "%3s ")
  '(nrepl-message-colors
    (quote
@@ -23,6 +24,7 @@
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+ '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path (quote file))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(vc-annotate-background "#2B2B2B")
