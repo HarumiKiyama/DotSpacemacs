@@ -39,11 +39,9 @@ values."
      better-defaults
      scheme
      java
-     ;; react
+     react
      django
      emacs-lisp
-     smex
-     deft
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -54,15 +52,13 @@ values."
      markdown
      (python :variables
              python-enable-yapf-format-on-save t
-             python-remove-unused-imports t
-             )
+             python-remove-unused-imports t)
      org
      (spacemacs-layouts :variables layouts-enable-autosave nil
                         layouts-autosave-delay 300)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
      syntax-checking
      version-control
      uruk
@@ -113,7 +109,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -126,7 +122,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(dracula zenburn)
+   dotspacemacs-themes '(dracula
+                         autumn-light
+                         hc-zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
