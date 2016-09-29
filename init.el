@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -33,14 +33,16 @@ values."
                       auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown
                       )
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+     ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     ;; (c-c++ :variables
+     ;;        c-c++-default-mode-for-headers 'c++-mode)
      better-defaults
      scheme
-     java
-     react
-     django
+     ;; java
+     ;; react
+     ;; haskell
+     ;; html
+     ;; django
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -49,10 +51,8 @@ values."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
-     markdown
-     (python :variables
-             python-enable-yapf-format-on-save t
-             python-remove-unused-imports t)
+     ;; markdown
+     python
      org
      (spacemacs-layouts :variables layouts-enable-autosave nil
                         layouts-autosave-delay 300)
@@ -60,6 +60,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      syntax-checking
+     ;; semantic
      version-control
      uruk
      )
@@ -123,7 +124,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(dracula
-                         autumn-light
+                         monokai
                          hc-zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -172,7 +173,7 @@ values."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-auto-save-file-location nil
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
@@ -211,7 +212,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -263,7 +264,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; Use China mirror
+  ;; Use Chinese mirror
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "https://elpa.zilongshanren.com/org/")
@@ -279,6 +280,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; triggle on menu bar
   (menu-bar-mode t)
+  (spacemacs/toggle-mode-line-org-clock-on)
 
   ;; org-mode setting
   (with-eval-after-load 'org
@@ -297,7 +299,13 @@ you should place your code here."
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
     (setq org-startup-truncated nil)
- )
+    ;; 基本框架搭建完成
+    ;; (org-add-agenda-custom-command
+    ;;  '("h" agenda "TODO"
+    ;;    ((org-agenda-skip-function
+    ;;      '(org-agenda-skip-entry-if 'todo '("TODO")))
+    ;;     (org-agenda-overriding-header "Test"))))
+    )
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   ;; chinese support
