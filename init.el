@@ -37,6 +37,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     javascript
      ;; ivy
      (erc :variables
           erc-server "irc.freenode.net"
@@ -52,6 +53,7 @@ values."
      ;; (c-c++ :variables
      ;;        c-c++-default-mode-for-headers 'c++-mode)
      better-defaults
+     markdown
      scheme
      ;; java
      ;; react
@@ -66,7 +68,6 @@ values."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
-     ;; markdown
      python
      org
      spacemacs-org
@@ -76,7 +77,6 @@ values."
      syntax-checking
      ;; semantic
      version-control
-     ;; uruk
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -86,7 +86,8 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(emacs-eclim)
+   dotspacemacs-excluded-packages '(emacs-eclim
+                                    exec-path-from-shell)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -138,15 +139,14 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'random
+   dotspacemacs-startup-banner 'official
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((agenda . 3)
-                                (recents . 5)
+   dotspacemacs-startup-lists '((recents . 5)
                                 (projects . 7))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
@@ -353,15 +353,24 @@ you should place your code here."
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
     (setq org-startup-truncated nil)
-    ;; 基本框架搭建完成
-    ;; (org-add-agenda-custom-command
-    ;;  '("h" agenda "TODO"
-    ;;    ((org-agenda-skip-function
-    ;;      '(org-agenda-skip-entry-if 'todo '("TODO")))
-    ;;     (org-agenda-overriding-header "Test"))))
+    ;; Generate diary titles
+    ;TODO: uncomplete
+    ;; (defun generate-diary-titles (start-date)
+    ;;   "generate diary titles"
+    ;;   (interactive "nStart Date(Y-M-D): ")
+    ;;   (let ((x 7) (start-date ))
+    ;;     (insert (format "* W%s" week-number))
+    ;;     (while (> x 0)
+    ;;       (insert "** []--[]\n")
+    ;;       (setq x (- x 1))))
+    ;;   )
     )
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
+  (setq scroll-margin 5)
+  ;; personal keybinding
+  (global-set-key (kbd "C-;") 'evil-avy-goto-char) 
+  (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
   ;; chinese support
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
