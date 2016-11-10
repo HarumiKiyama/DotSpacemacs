@@ -53,10 +53,9 @@ values."
      ;; (c-c++ :variables
      ;;        c-c++-default-mode-for-headers 'c++-mode)
      better-defaults
+     gnus
      markdown
      scheme
-     ;; java
-     ;; react
      ;; haskell
      ;; html
      ;; django
@@ -75,7 +74,6 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      syntax-checking
-     ;; semantic
      version-control
      )
    ;; List of additional packages that will be installed without being
@@ -86,8 +84,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(emacs-eclim
-                                    exec-path-from-shell)
+   dotspacemacs-excluded-packages '(exec-path-from-shell)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -368,8 +365,8 @@ you should place your code here."
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
-  ;; personal keybinding
-  (global-set-key (kbd "C-;") 'evil-avy-goto-char) 
+  ; personal keybinding
+  (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
   ;; chinese support
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
