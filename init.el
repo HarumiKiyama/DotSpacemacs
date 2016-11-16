@@ -53,11 +53,12 @@ values."
      ;; (c-c++ :variables
      ;;        c-c++-default-mode-for-headers 'c++-mode)
      better-defaults
-     gnus
+     (mu4e :variables
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
      markdown
      scheme
+     html
      ;; haskell
-     ;; html
      ;; django
      emacs-lisp
      (git :variables
@@ -350,18 +351,21 @@ you should place your code here."
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
     (setq org-startup-truncated nil)
-    ;; Generate diary titles
-    ;TODO: uncomplete
-    ;; (defun generate-diary-titles (start-date)
-    ;;   "generate diary titles"
-    ;;   (interactive "nStart Date(Y-M-D): ")
-    ;;   (let ((x 7) (start-date ))
-    ;;     (insert (format "* W%s" week-number))
-    ;;     (while (> x 0)
-    ;;       (insert "** []--[]\n")
-    ;;       (setq x (- x 1))))
-    ;;   )
     )
+  ;; mu4e setting
+  (setq mu4e-maildir "/home/uruk/Maildir/hotmail")
+  (setq mu4e-sent-folder "/Sent"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-trash-folder "/Deleted")
+
+  (setq mail-user-agent 'mu4e-user-agent)
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-update-interval 600)
+
+  ;; msmtp setting
+  (setq message-send-mail-function 'message-send-mail-with-sendmail)
+  (setq sendmail-program "msmtp")
+
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
