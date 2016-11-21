@@ -53,8 +53,6 @@ values."
      ;; (c-c++ :variables
      ;;        c-c++-default-mode-for-headers 'c++-mode)
      better-defaults
-     (mu4e :variables
-           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
      markdown
      scheme
      html
@@ -73,6 +71,9 @@ values."
      spacemacs-org
      (shell :variables
             shell-default-height 30
+            shell-default-shell 'eshell
+            shell-default-full-span nil
+            shell-enable-smart-eshell t
             shell-default-position 'bottom)
      syntax-checking
      version-control
@@ -81,7 +82,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(w3m)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -350,28 +351,39 @@ you should place your code here."
                                ("~/org-mode/someday.org" :maxlevel . 1)
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
-    (setq org-startup-truncated nil)
-    )
-  ;; mu4e setting
-  (setq mu4e-maildir "/home/uruk/Maildir/hotmail")
-  (setq mu4e-sent-folder "/Sent"
-        mu4e-drafts-folder "/Drafts"
-        mu4e-trash-folder "/Deleted")
-
-  (setq mail-user-agent 'mu4e-user-agent)
-  (setq mu4e-get-mail-command "mbsync -a")
-  (setq mu4e-update-interval 600)
-
-  ;; msmtp setting
-  (setq message-send-mail-function 'message-send-mail-with-sendmail)
-  (setq sendmail-program "msmtp")
-
+    (setq org-startup-truncated nil))
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
+  ;; figlet setting
+  (setq figlet-font-directory "/usr/bin")
+
+  ;; Esperanto function setting
+  (defun esperanto-change (wrong right)
+    (while (search-forward wrong nil t)
+      (replace-match right))
+    (beginning-of-buffer))
+  (defun esperanto-cap ()
+    (interactive)
+    (progn
+      (esperanto-change "cx" "ĉ")
+      (esperanto-change "CX" "Ĉ")
+      (esperanto-change "gx" "ĝ")
+      (esperanto-change "GX" "Ĝ")
+      (esperanto-change "hx" "ĥ")
+      (esperanto-change "HX" "Ĥ")
+      (esperanto-change "jx" "ĵ")
+      (esperanto-change "JX" "Ĵ")
+      (esperanto-change "sx" "ŝ")
+      (esperanto-change "SX" "Ŝ")
+      (esperanto-change "ux" "ŭ")
+      (esperanto-change "UX" "Ŭ")))
+
+
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+
   ;; chinese support
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
