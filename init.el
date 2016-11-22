@@ -360,24 +360,23 @@ you should place your code here."
 
   ;; Esperanto function setting
   (defun esperanto-change (wrong right)
+    (beginning-of-buffer)
     (while (search-forward wrong nil t)
-      (replace-match right))
-    (beginning-of-buffer))
+      (replace-match right)))
   (defun esperanto-cap ()
     (interactive)
-    (progn
-      (esperanto-change "cx" "ĉ")
-      (esperanto-change "CX" "Ĉ")
-      (esperanto-change "gx" "ĝ")
-      (esperanto-change "GX" "Ĝ")
-      (esperanto-change "hx" "ĥ")
-      (esperanto-change "HX" "Ĥ")
-      (esperanto-change "jx" "ĵ")
-      (esperanto-change "JX" "Ĵ")
-      (esperanto-change "sx" "ŝ")
-      (esperanto-change "SX" "Ŝ")
-      (esperanto-change "ux" "ŭ")
-      (esperanto-change "UX" "Ŭ")))
+    (esperanto-change "cx" "ĉ")
+    (esperanto-change "CX" "Ĉ")
+    (esperanto-change "gx" "ĝ")
+    (esperanto-change "GX" "Ĝ")
+    (esperanto-change "hx" "ĥ")
+    (esperanto-change "HX" "Ĥ")
+    (esperanto-change "jx" "ĵ")
+    (esperanto-change "JX" "Ĵ")
+    (esperanto-change "sx" "ŝ")
+    (esperanto-change "SX" "Ŝ")
+    (esperanto-change "ux" "ŭ")
+    (esperanto-change "UX" "Ŭ"))
 
 
   ; personal keybinding
