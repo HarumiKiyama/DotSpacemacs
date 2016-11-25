@@ -47,7 +47,7 @@
  '(org-agenda-window-setup (quote current-window))
  '(org-clock-mode-line-total (quote current))
  '(org-clock-persist (quote clock))
- '(org-export-backends (quote (ascii html icalendar latex md)))
+ '(org-export-backends (quote (beamer html latex md odt)))
  '(org-habit-following-days 3)
  '(org-habit-preceding-days 21)
  '(org-habit-show-done-always-green nil)

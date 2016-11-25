@@ -70,11 +70,7 @@ values."
      org
      spacemacs-org
      (shell :variables
-            shell-default-height 30
-            shell-default-shell 'eshell
-            shell-default-full-span nil
-            shell-enable-smart-eshell t
-            shell-default-position 'bottom)
+            shell-default-shell 'eshell)
      syntax-checking
      version-control
      )
@@ -351,12 +347,11 @@ you should place your code here."
                                ("~/org-mode/someday.org" :maxlevel . 1)
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
-    (setq org-startup-truncated nil))
+    (setq org-startup-truncated nil)
+    (define-key org-mode-map (kbd "\C-ct") 'diary-titles))
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
-  ;; figlet setting
-  (setq figlet-font-directory "/usr/bin")
 
   ;; Esperanto function setting
   (defun esperanto-change (wrong right)
@@ -378,7 +373,23 @@ you should place your code here."
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
 
-
+  ;; Diary titles
+  ;; Need more modification
+  (defun diary-titles (weeks)
+    "Generate diary titles"
+    (interactive "sInput the number of next week:")
+    (insert "** W" weeks)
+    (defun one-title (day)
+      (newline)
+      (let ((time (+ (+ (car (cdr (current-time))) (* (car (current-time))
+                                                      (expt 2 16))) (* day 86400))))
+        (org-insert-time-stamp time nil t "*** ")))
+    (let ((day 1))
+      (while (< day 8)
+        (one-title day)
+        (setq day (+ day 1)))
+      (newline)
+      (insert "*** 总结")))
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
