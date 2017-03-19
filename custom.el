@@ -22,6 +22,7 @@
      (dayname "\\W"))))
  '(diary-file "~/org-mode/diary")
  '(diary-mail-addr "lucius0720@hotmail.com")
+ '(evil-want-Y-yank-to-eol t)
  '(exec-path-from-shell-variables nil)
  '(geiser-default-implementation (quote mit-scheme))
  '(geiser-racket-binary "e:\\Racket\\Racket.exe")
@@ -47,6 +48,7 @@
  '(org-agenda-window-setup (quote current-window))
  '(org-clock-mode-line-total (quote current))
  '(org-clock-persist (quote clock))
+ '(org-drill-learn-fraction 0.45)
  '(org-export-backends (quote (beamer html latex md odt)))
  '(org-habit-following-days 3)
  '(org-habit-preceding-days 21)
@@ -56,17 +58,20 @@
  '(org-log-repeat nil)
  '(org-modules
    (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+    (org-bbdb org-bibtex org-docview org-habit org-info org-irc org-mhe org-w3m org-drill)))
  '(org-outline-path-complete-in-steps nil)
+ '(org-pomodoro-play-sounds t)
  '(org-refile-use-outline-path (quote file))
  '(org-startup-indented t)
+ '(org-tag-alist (quote (("drill" . 100))))
  '(package-selected-packages
    (quote
-    (w3m bbdb figlet mu4e-maildirs-extension mu4e-alert ht pug-mode haml-mode web-completion-data pcache company-emacs-eclim livid-mode skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode dash-functional tern mmm-mode markdown-toc markdown-mode gh-md hide-comnt powerline spinner org alert log4e gntp parent-mode request gitignore-mode fringe-helper git-gutter+ pos-tip pkg-info epl flx anzu evil goto-chg highlight diminish bind-map bind-key packed pythonic dash avy auto-complete popup yasnippet magit-popup async wgrep smex ivy-hydra counsel-projectile counsel swiper ivy yapfify uuidgen py-isort org-projectile org-download mwim live-py-mode link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eshell-z dumb-jump column-enforce-mode stickyfunc-enhance srefactor hydra git-gutter iedit anaconda-mode smartparens undo-tree flycheck company projectile helm helm-core magit git-commit with-editor f s package-build hz-zenburn-theme monokai-theme hc-zenburn-theme xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode sicp shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ geiser flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emmet-mode elisp-slime-nav eclim dracula-theme disaster diff-hl define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda coffee-mode cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (enh-ruby-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby molokai-theme imenu-list noflet ensime sbt-mode scala-mode sql-indent w3m bbdb figlet mu4e-maildirs-extension mu4e-alert ht pug-mode haml-mode web-completion-data pcache company-emacs-eclim livid-mode skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode dash-functional tern mmm-mode markdown-toc markdown-mode gh-md hide-comnt powerline spinner org alert log4e gntp parent-mode request gitignore-mode fringe-helper git-gutter+ pos-tip pkg-info epl flx anzu evil goto-chg highlight diminish bind-map bind-key packed pythonic dash avy auto-complete popup yasnippet magit-popup async wgrep smex ivy-hydra counsel-projectile counsel swiper ivy yapfify uuidgen py-isort org-projectile org-download mwim live-py-mode link-hint git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eshell-z dumb-jump column-enforce-mode stickyfunc-enhance srefactor hydra git-gutter iedit anaconda-mode smartparens undo-tree flycheck company projectile helm helm-core magit git-commit with-editor f s package-build hz-zenburn-theme monokai-theme hc-zenburn-theme xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package toc-org tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode sicp shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file neotree multi-term move-text magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ geiser flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emmet-mode elisp-slime-nav eclim dracula-theme disaster diff-hl define-word cython-mode company-web company-tern company-statistics company-quickhelp company-c-headers company-anaconda coffee-mode cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(scheme-program-name "guile")
+ '(smartparens-global-mode t)
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    (quote

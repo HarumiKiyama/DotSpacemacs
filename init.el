@@ -37,7 +37,12 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     scala
      javascript
+     ruby
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      ;; ivy
      (erc :variables
           erc-server "irc.freenode.net"
@@ -50,10 +55,9 @@ values."
                       :disabled-for org markdown
                       )
      ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     ;; (c-c++ :variables
-     ;;        c-c++-default-mode-for-headers 'c++-mode)
      better-defaults
      markdown
+     imenu-list
      scheme
      html
      ;; haskell
@@ -78,7 +82,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(w3m)
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -150,8 +154,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(dracula
-                         monokai
+   dotspacemacs-themes '(molokai
+                         dracula
                          hc-zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -272,13 +276,13 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -335,20 +339,22 @@ you should place your code here."
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
-    (setq org-capture-templates '(("t" "Todo" entry (file "~/org-mode/task.org" "Tasks")
-                                   "** TODO %?\n")
+    (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
+                                   "** word :drill:\n%^{Esperanto}[%^{English}]")
                                   ))
-    (setq org-tag-alist '(("Work" . ?w) ("Read" . ?r) ("Trivial" . ?t) ("Project" ?p) ("Primatology" ?g)))
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
-                             "~/org-mode/routine.org"))
+                             "~/org-mode/routine.org"
+                             "~/org-mode/Esperanto.org"))
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
                                ("~/org-mode/someday.org" :maxlevel . 1)
+                               (nil . (:maxlevel . 2))
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
     (setq org-startup-truncated nil)
-    (define-key org-mode-map (kbd "\C-ct") 'diary-titles))
+    (define-key org-mode-map (kbd "\C-ct") 'diary-titles)
+    (define-key org-mode-map (kbd "\C-cd") 'org-drill))
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
@@ -389,7 +395,11 @@ you should place your code here."
         (one-title day)
         (setq day (+ day 1)))
       (newline)
-      (insert "*** 总结")))
+      (insert "*** 总结")
+      (newline)
+      (insert "#+BEGIN: clocktable :maxlevel 2 :scope agenda-with-archives :block thisweek")
+      (newline)
+      (insert "#+END:")))
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
