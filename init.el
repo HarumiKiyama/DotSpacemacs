@@ -55,7 +55,7 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
                       :disabled-for markdown org
-                      )
+                      (haskell :variables haskell-completion-backend 'intero))
      ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
      better-defaults
      markdown
@@ -78,6 +78,8 @@ values."
             shell-default-shell 'eshell)
      syntax-checking
      blog
+     (journal :variables
+              org-journal-dir "~/org-mode/journal")
      version-control
      )
    ;; List of additional packages that will be installed without being
@@ -363,6 +365,8 @@ you should place your code here."
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
+    (setq org-tag-alist '(("@company" . ?c)
+                          ("@home" . ?h)))
     (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
                                    "** word :drill:\n%^{Esperanto}[%^{English}]")
                                   ))
