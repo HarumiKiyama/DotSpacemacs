@@ -55,14 +55,17 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
                       :disabled-for markdown org
-                      (haskell :variables haskell-completion-backend 'intero))
+                      )
      ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
      better-defaults
      markdown
      imenu-list
      scheme
      html
-     haskell
+     (haskell :variables
+              haskell-completion-backend 'intero
+              haskell-process-type 'stack-ghci
+              )
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -366,7 +369,8 @@ you should place your code here."
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
     (setq org-tag-alist '(("@company" . ?c)
-                          ("@home" . ?h)))
+                          ("@home" . ?h)
+                          ("routine" . ?r)))
     (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
                                    "** word :drill:\n%^{Esperanto}[%^{English}]")
                                   ))
