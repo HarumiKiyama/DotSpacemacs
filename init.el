@@ -355,7 +355,10 @@ you should place your code here."
   (spacemacs/toggle-mode-line-org-clock-on)
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)
-
+  ;; automatically async git repo
+  (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
+  (add-hook 'kill-emacs-hook (lambda ()
+                               (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
   ;; timer setting
   (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/bell.wav")))
 
