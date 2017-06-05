@@ -45,7 +45,7 @@
      ("reg" "hledger -f %(ledger-file) reg")
      ("weekly expenses" "%(binary) -f %(ledger-file) balance expenses--tree --no-total --row-total --average --weekly")
      ("payee" "hledger -f %(ledger-file) reg @%(payee)")
-     ("account" "hledger -f %(ledger-file) reg %(account)"))))
+     ("account" "hledger -f %(ledger-file) reg %(account)"))) t)
  '(linum-relative-format "%3s ")
  '(magit-diff-use-overlays nil)
  '(nrepl-message-colors

@@ -63,6 +63,7 @@ values."
      scheme
      html
      (haskell :variables
+              haskell-enable-hindent-style "chris-done"
               haskell-completion-backend 'intero
               haskell-process-type 'stack-ghci
               )
@@ -161,8 +162,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(molokai
+   dotspacemacs-themes '(
                          dracula
+                         molokai
                          hc-zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -372,8 +374,10 @@ you should place your code here."
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
     (setq org-tag-alist '(("@company" . ?c)
-                          ("@home" . ?h)
-                          ("routine" . ?r)))
+                          ("routine" . ?r)
+                          ("reading" . ?R)
+                          ("english" . ?e)
+                          ("programming" . ?p)))
     (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
                                    "** word :drill:\n%^{Esperanto}[%^{English}]")
                                   ))
