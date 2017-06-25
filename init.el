@@ -63,8 +63,9 @@ values."
      scheme
      html
      (haskell :variables
-              haskell-enable-hindent-style "chris-done"
-              haskell-completion-backend 'intero
+              haskell-enable-hindent-style "gibiansky"
+              ;; just for practice for production use intero
+              ;; haskell-completion-backend 'intero
               haskell-process-type 'stack-ghci
               )
      emacs-lisp
