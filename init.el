@@ -36,6 +36,9 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      go
+     w3m
+     coq
+     bm
      yaml
      finance
      pdf-tools
@@ -44,7 +47,6 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     ;;cscope
      (erc :variables
           erc-server "irc.freenode.net"
           erc-nick "uruk1993"
@@ -60,7 +62,6 @@ This function should only modify configuration layer settings."
      imenu-list
      scheme
      html
-     java
      idris
      (haskell :variables
               haskell-enable-hindent-style "gibiansky"
@@ -377,10 +378,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "https://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
+  ;; (setq configuration-layer--elpa-archives
+  ;;       '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
+  ;;         ("org-cn"   . "https://elpa.zilongshanren.com/org/")
+  ;;         ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
