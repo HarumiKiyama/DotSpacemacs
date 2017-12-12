@@ -36,11 +36,11 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      go
-     w3m
      coq
      bm
      yaml
      finance
+     osx
      pdf-tools
      helm
      restclient
@@ -84,7 +84,6 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-shell 'eshell)
      syntax-checking
-     blog
      version-control
      )
    ;; List of additional packages that will be installed without being
@@ -95,7 +94,7 @@ This function should only modify configuration layer settings."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(exec-path-from-shell)
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
