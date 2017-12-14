@@ -35,18 +35,18 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     go
-     coq
+     ;; go
+     ;; coq
      bm
      yaml
-     finance
+     ;; finance
      osx
      pdf-tools
      helm
      restclient
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+     ;; (c-c++ :variables
+     ;;        c-c++-default-mode-for-headers 'c++-mode
+     ;;        c-c++-enable-clang-support t)
      (erc :variables
           erc-server "irc.freenode.net"
           erc-nick "uruk1993"
@@ -59,15 +59,17 @@ This function should only modify configuration layer settings."
                       )
      better-defaults
      markdown
+     (vagrant :variables
+              vagrant-vagrantfile "~/projects/devos")
      imenu-list
-     scheme
+     ;; scheme
      html
-     idris
-     (haskell :variables
-              haskell-enable-hindent-style "gibiansky"
-              haskell-completion-backend 'intero
-              haskell-process-type 'stack-ghci
-              )
+     ;; idris
+     ;; (haskell :variables
+     ;;          haskell-enable-hindent-style "gibiansky"
+     ;;          haskell-completion-backend 'intero
+     ;;          haskell-process-type 'stack-ghci
+     ;;          )
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -76,10 +78,12 @@ This function should only modify configuration layer settings."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
-     python
+     (python :variables
+             python-test-runner 'pytest)
      org
      treemacs
      ;;neotree
+     spacemacs-language
      spacemacs-org
      (shell :variables
             shell-default-shell 'eshell)
@@ -90,7 +94,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(protobuf-mode virtualenvwrapper)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
