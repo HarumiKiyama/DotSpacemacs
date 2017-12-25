@@ -36,7 +36,7 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; go
-     ;; coq
+     coq
      bm
      yaml
      ;; finance
@@ -80,7 +80,16 @@ This function should only modify configuration layer settings."
           magit-revision-show-gravatars nil)
      (python :variables
              python-test-runner 'pytest)
-     org
+     (org :variables
+          org-enable-reveal-js-support t
+          org-enable-hugo-support t
+          org-enable-org-journal-support t
+          org-journal-dir "~/org-mode/journal/"
+          org-journal-file-format "%Y-%m-%d"
+          org-journal-date-prefix "#+TITLE: "
+          org-journal-date-format "%A, %B %d %Y"
+          org-journal-time-prefix "* "
+          org-journal-time-format "")
      treemacs
      ;;neotree
      spacemacs-language
@@ -94,7 +103,9 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(protobuf-mode virtualenvwrapper)
+   dotspacemacs-additional-packages '(protobuf-mode
+                                      virtualenvwrapper
+                                      org-tree-slide)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -166,8 +177,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         dracula
+   dotspacemacs-themes '(dracula
                          molokai
                          hc-zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
