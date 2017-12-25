@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: org-header
+# key: header
+# --
+#+TITLE:     $1
+#+AUTHOR:    HarumiKiyama
+#+EMAIL:     lucius0720@hotmail.com
+#+DATE:      `(format-time-string "%Y-%m-%d")`
+#+DESCRIPTION: $2

@@ -38,6 +38,7 @@ This function should only modify configuration layer settings."
      go
      w3m
      coq
+     typography
      bm
      yaml
      finance
@@ -378,10 +379,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  ;; (setq configuration-layer--elpa-archives
-  ;;       '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
-  ;;         ("org-cn"   . "https://elpa.zilongshanren.com/org/")
-  ;;         ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
+  ;; (setq configuration-layer-elpa-archives
+  ;;     '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
+  ;;       ("org-cn"   . "https://elpa.emacs-china.org/org/")
+  ;;       ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
