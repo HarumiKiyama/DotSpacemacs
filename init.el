@@ -71,6 +71,7 @@ This function should only modify configuration layer settings."
      ;;          haskell-process-type 'stack-ghci
      ;;          )
      emacs-lisp
+     mu4e
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -85,10 +86,8 @@ This function should only modify configuration layer settings."
           org-enable-hugo-support t
           org-enable-org-journal-support t
           org-journal-dir "~/org-mode/journal/"
-          org-journal-file-format "%Y-%m-%d"
-          org-journal-date-prefix "#+TITLE: "
-          org-journal-date-format "%A, %B %d %Y"
-          org-journal-time-prefix "* "
+          org-journal-date-format "%Y-%m-%d %A"
+          org-journal-time-prefix ""
           org-journal-time-format "")
      treemacs
      ;;neotree
@@ -105,6 +104,7 @@ This function should only modify configuration layer settings."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(protobuf-mode
                                       virtualenvwrapper
+                                      apib-mode
                                       org-tree-slide)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
