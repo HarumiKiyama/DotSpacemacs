@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: time-statistics
+# key: stat
+# --
+#+BEGIN: clocktable :maxlevel 2 :scope agenda-with-archives :block $1
+#+END:

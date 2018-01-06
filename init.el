@@ -38,7 +38,19 @@ This function should only modify configuration layer settings."
      go
      w3m
      coq
+     (mu4e :variables
+           mu4e-enable-notifications t
+           mu4e-enable-mode-line t
+           mu4e-trash-folder "/Trash"
+           mu4e-sent-folder "/Sent"
+           mu4e-refile-folder "/Archive"
+           mu4e-get-mail-command "mbsync -a"
+           mu4e-update-interval nil
+           mu4e-compose-signature-auto-include nil
+           mu4e-view-show-images t
+           mu4e-view-show-addresses t)
      typography
+     scala
      bm
      yaml
      finance
@@ -55,9 +67,7 @@ This function should only modify configuration layer settings."
           )
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-sort-by-usage t
-                      :disabled-for markdown org
-                      )
+                      auto-completion-enable-sort-by-usage t)
      better-defaults
      markdown
      imenu-list
@@ -78,7 +88,11 @@ This function should only modify configuration layer settings."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
      python
-     org
+     (org :variables
+          org-enable-org-journal-support t
+          org-journal-dir "~/org-mode/journal/"
+          org-journal-enable-encryption t
+          org-enable-hugo-support t)
      treemacs
      ;;neotree
      spacemacs-org
@@ -92,7 +106,8 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ecb
+                                      sicp)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -444,6 +459,10 @@ you should place your code here."
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
     (setq org-startup-truncated nil)
+    ;; org-journal setting
+    (setq org-journal-date-format "%Y-%m-%d %A"
+          org-journal-time-format ""
+          org-journal-time-prefix "")
     (define-key org-mode-map (kbd "\C-ct") 'my-org/diary-titles)
     (define-key org-mode-map (kbd "\C-cd") 'org-drill)
     )
