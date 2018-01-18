@@ -36,8 +36,8 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      go
-     w3m
      coq
+     rust
      (mu4e :variables
            mu4e-enable-notifications t
            mu4e-enable-mode-line t
@@ -51,7 +51,6 @@ This function should only modify configuration layer settings."
            mu4e-view-show-addresses t)
      typography
      scala
-     bm
      yaml
      finance
      pdf-tools
@@ -90,24 +89,22 @@ This function should only modify configuration layer settings."
      python
      (org :variables
           org-enable-org-journal-support t
+          org-enable-reveal-js-support t
+          org-enable-github-support t
           org-journal-dir "~/org-mode/journal/"
-          org-journal-enable-encryption t
-          org-enable-hugo-support t)
+          org-journal-enable-encryption t)
      treemacs
      ;;neotree
-     spacemacs-org
      (shell :variables
             shell-default-shell 'eshell)
      syntax-checking
-     blog
      version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(ecb
-                                      sicp)
+   dotspacemacs-additional-packages '(sicp)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -139,6 +136,13 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
+   ;; If non-nil then Spacelpa repository is the primary source to install
+   ;; a locked version of packages. If nil then Spacemacs will install the lastest
+   ;; version of packages from MELPA. (default nil)
+   dotspacemacs-use-spacelpa nil
+   ;; If non-nil then verify the signature for downloaded Spacelpa archives.
+   ;; (default nil)
+   dotspacemacs-verify-spacelpa-archives nil
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
@@ -146,8 +150,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-check-for-update nil
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
-   ;; to `emacs-version'. (default nil)
-   dotspacemacs-elpa-subdirectory nil
+   ;; to `emacs-version'. (default 'emacs-version)
+   dotspacemacs-elpa-subdirectory 'emacs-version
    ;; One of `vim', `emacs' or `hybrid'.
    ;; `hybrid' is like `vim' except that `insert state' is replaced by the
    ;; `hybrid state' with `emacs' key bindings. The value can also be a list
@@ -179,11 +183,15 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         dracula
-                         molokai
-                         hc-zenburn)
-   ;; If non nil the cursor color matches the state color in GUI Emacs.
+   dotspacemacs-themes '(zenburn)
+   ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
+   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
+   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
+   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
+   ;; to create your own spaceline theme.. (default 'spacemacs)
+   dotspacemacs-mode-line-theme 'spacemacs
+   ;; If non-nil the cursor color matches the state color in GUI Emacs.
+   ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
@@ -394,10 +402,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  ;; (setq configuration-layer-elpa-archives
-  ;;     '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
-  ;;       ("org-cn"   . "https://elpa.emacs-china.org/org/")
-  ;;       ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
+  (setq configuration-layer-elpa-archives
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
@@ -435,7 +443,8 @@ you should place your code here."
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
-    (setq org-tag-alist '(("@company" . ?c)
+    (setq org-tag-alist '(("@company" . ?C)
+                          ("crypt" . ?c)
                           ("routine" . ?r)
                           ("Haskell" . ?h)
                           ("Idris" . ?i)
@@ -455,6 +464,7 @@ you should place your code here."
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
                                ("~/org-mode/someday.org" :maxlevel . 1)
+                               ("~/org-mode/blog.org" :maxlevel . 1)
                                (nil . (:maxlevel . 2))
                                ))
     (setq org-archive-location "~/org-mode/archive.org::")
@@ -463,6 +473,9 @@ you should place your code here."
     (setq org-journal-date-format "%Y-%m-%d %A"
           org-journal-time-format ""
           org-journal-time-prefix "")
+    ;; org-crypt setting
+    (setq org-crypt-key "B77016C8B8ECEBE817DC0288CC09EA1921BDC71F"
+          auto-save-default nil)
     (define-key org-mode-map (kbd "\C-ct") 'my-org/diary-titles)
     (define-key org-mode-map (kbd "\C-cd") 'org-drill)
     )
@@ -490,27 +503,6 @@ you should place your code here."
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
 
-  ;; Diary titles
-  ;; Only works on Sunday
-  (defun my-org/diary-titles (week_number)
-    "Generate diary titles"
-    (interactive "sInput the number of next week:")
-    (insert "** W" week_number)
-    (defun one-title (day)
-      (newline)
-      (let ((time (+ (+ (car (cdr (current-time))) (* (car (current-time))
-                                                      (expt 2 16))) (* day 86400))))
-        (org-insert-time-stamp time nil t "*** ")))
-    (let ((day 1))
-      (while (< day 8)
-        (one-title day)
-        (setq day (+ day 1)))
-      (newline)
-      (insert "*** 总结")
-      (newline)
-      (insert "#+BEGIN: clocktable :maxlevel 2 :scope agenda-with-archives :block thisweek")
-      (newline)
-      (insert "#+END:")))
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
