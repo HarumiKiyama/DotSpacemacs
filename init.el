@@ -35,12 +35,14 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     javascript
      ;; go
      coq
      bm
      yaml
      ;; finance
      osx
+     rust
      pdf-tools
      helm
      restclient
@@ -102,10 +104,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(protobuf-mode
-                                      virtualenvwrapper
-                                      apib-mode
-                                      org-tree-slide)
+   dotspacemacs-additional-packages '(protobuf-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -177,9 +176,9 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(dracula
-                         molokai
-                         hc-zenburn)
+   dotspacemacs-themes '(zenburn
+                         dracula
+                         molokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -451,6 +450,7 @@ you should place your code here."
                              "~/org-mode/Esperanto.org"))
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
+                               ("~/org-mode/routine.org" :maxlevel . 1)
                                ("~/org-mode/someday.org" :maxlevel . 1)
                                (nil . (:maxlevel . 2))
                                ))
