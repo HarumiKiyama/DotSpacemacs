@@ -41,13 +41,12 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      javascript
      ;; go
-     coq
+     ;; coq
      bm
      yaml
      ;; finance
      osx
      rust
-     pdf-tools
      helm
      restclient
      ;; (c-c++ :variables
