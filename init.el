@@ -53,6 +53,7 @@ This function should only modify configuration layer settings."
      scala
      yaml
      finance
+     pdf-tools
      helm
      restclient
      (c-c++ :variables
