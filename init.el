@@ -76,7 +76,7 @@ This function should only modify configuration layer settings."
      ;;          haskell-process-type 'stack-ghci
      ;;          )
      emacs-lisp
-     mu4e
+     ;; mu4e
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
