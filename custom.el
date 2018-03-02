@@ -24,7 +24,6 @@
  '(diary-mail-addr "lucius0720@hotmail.com")
  '(evil-want-Y-yank-to-eol t)
  '(exec-path-from-shell-variables nil)
- '(flycheck-yaml-ruby-executable "ruby")
  '(geiser-default-implementation (quote mit-scheme))
  '(geiser-racket-binary "e:\\Racket\\Racket.exe")
  '(global-visual-line-mode t)

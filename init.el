@@ -39,7 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     javascript
+     ;; javascript
      ;; go
      ;; coq
      bm
@@ -64,8 +64,6 @@ This function should only modify configuration layer settings."
                       )
      better-defaults
      markdown
-     (vagrant :variables
-              vagrant-vagrantfile "~/projects/devos")
      imenu-list
      ;; scheme
      html
@@ -85,7 +83,10 @@ This function should only modify configuration layer settings."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
      (python :variables
-             python-test-runner 'pytest)
+             python-test-runner 'pytest
+             flycheck-python-flake8-executable "python3"
+             flycheck-python-pycompile-executable "python3"
+             )
      (org :variables
           org-enable-reveal-js-support t
           org-enable-hugo-support t
@@ -111,7 +112,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(protobuf-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -520,7 +521,8 @@ you should place your code here."
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
-    (setq org-tag-alist '(("@company" . ?c)
+    (setq org-tag-alist '(("@company" . ?C)
+                          ("crypt" . ?c)
                           ("routine" . ?r)
                           ("Haskell" . ?h)
                           ("Idris" . ?i)
