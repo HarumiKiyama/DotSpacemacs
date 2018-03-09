@@ -424,6 +424,7 @@ you should place your code here."
   (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
   (add-hook 'kill-emacs-hook (lambda ()
                                (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
+  (setq racer-rust-src-path (getenv "RUST_SRC_PATH"))
   ;; timer setting
   (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/bell.wav")))
   (setq ledger-mode-should-check-version nil
