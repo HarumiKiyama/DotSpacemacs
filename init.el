@@ -89,12 +89,7 @@ This function should only modify configuration layer settings."
              )
      (org :variables
           org-enable-reveal-js-support t
-          org-enable-hugo-support t
-          org-enable-org-journal-support t
-          org-journal-dir "~/org-mode/journal/"
-          org-journal-date-format "%Y-%m-%d %A"
-          org-journal-time-prefix ""
-          org-journal-time-format "")
+          org-enable-hugo-support t)
      treemacs
      ;;neotree
      spacemacs-language
