@@ -39,8 +39,6 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     docker
-     nginx
      go
      coq
      rust
@@ -56,11 +54,12 @@ This function should only modify configuration layer settings."
            mu4e-view-show-images t
            mu4e-view-show-addresses t)
      typography
-     scala
+     ;; scala
      yaml
      finance
      pdf-tools
-     helm
+     ;; helm
+     ivy
      restclient
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -223,7 +222,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(all-the-icons :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -468,7 +467,7 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs t))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -491,8 +490,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; triggle on menu bar
-  (menu-bar-mode t)
   (spacemacs/toggle-mode-line-org-clock-on)
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)
