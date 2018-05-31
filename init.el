@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -41,20 +41,22 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; javascript
      ;; go
-     ;; coq
+     coq
      bm
      yaml
      ;; finance
      osx
+     csv
      rust
-     helm
-     restclient
-     ;; (c-c++ :variables
-     ;;        c-c++-default-mode-for-headers 'c++-mode
-     ;;        c-c++-enable-clang-support t)
+     ;; helm
+     ivy
+     ;; restclient
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      (erc :variables
           erc-server "irc.freenode.net"
-          erc-nick "uruk1993"
+          erc-nick "harumi"
           erc-port "6667"
           )
      (auto-completion :variables
@@ -66,13 +68,13 @@ This function should only modify configuration layer settings."
      markdown
      imenu-list
      ;; scheme
-     html
-     ;; idris
+     ;; html
+     idris
      ;; (haskell :variables
-     ;;          haskell-enable-hindent-style "gibiansky"
-     ;;          haskell-completion-backend 'intero
-     ;;          haskell-process-type 'stack-ghci
-     ;;          )
+     ;;         haskell-enable-hindent-style "gibiansky"
+     ;;         haskell-completion-backend 'intero
+     ;;         haskell-process-type 'stack-ghci
+     ;;         )
      emacs-lisp
      ;; mu4e
      (git :variables
@@ -107,7 +109,8 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(protobuf-mode)
+   dotspacemacs-additional-packages '(protobuf-mode
+                                      sicp)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -132,6 +135,25 @@ It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   ;; If non-nil then enable support for the portable dumper. You'll need
+   ;; to compile Emacs 27 from source following the instructions in file
+   ;; EXPERIMENTAL.org at to root of the git repository.
+   ;; (default nil)
+   dotspacemacs-enable-emacs-pdumper nil
+
+   ;; File path pointing to emacs 27.1 executable compiled with support
+   ;; for the portable dumper (this is currently the branch pdumper).
+   ;; (default "emacs")
+   dotspacemacs-emacs-pdumper-executable-file "emacs"
+
+   ;; Name of the Spacemacs dump file. This is the file will be created by the
+   ;; portable dumper in the cache directory under dumps sub-directory.
+   ;; To load it when starting Emacs add the parameter `--dump-file'
+   ;; when invoking Emacs 27.1 executable on the command line, for instance:
+   ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
+   ;; (default spacemacs.pdmp)
+   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -498,7 +520,7 @@ you should place your code here."
   (add-hook 'kill-emacs-hook (lambda ()
                                (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
   ;; timer setting
-  (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/bell.wav")))
+  (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/Frog.aiff")))
   (setq ledger-mode-should-check-version nil
         ledger-report-links-in-register nil
         ledger-binary-path "hledger")
@@ -529,6 +551,7 @@ you should place your code here."
                           ))
     (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
                                    "** word :drill:\n%^{Esperanto}[%^{English}]")
+                                  ("t" "thoughts" entry (file+headline "~/org-mode/notes.org" "Thoughts") "** %^{title}\n%<%Y-%m-%d>\n%?")
                                   ))
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
@@ -600,7 +623,7 @@ you should place your code here."
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
-                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
+                      (font-spec :family "Micro Hei Mono" :size 22)))
 )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
