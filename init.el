@@ -39,25 +39,13 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     go
+     ;; go
      coq
      rust
-     (mu4e :variables
-           mu4e-enable-notifications t
-           mu4e-enable-mode-line t
-           mu4e-trash-folder "/Trash"
-           mu4e-sent-folder "/Sent"
-           mu4e-refile-folder "/Archive"
-           mu4e-get-mail-command "mbsync -a"
-           mu4e-update-interval nil
-           mu4e-compose-signature-auto-include nil
-           mu4e-view-show-images t
-           mu4e-view-show-addresses t)
      typography
      ;; scala
      yaml
      finance
-     pdf-tools
      ;; helm
      ivy
      restclient
@@ -222,7 +210,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
