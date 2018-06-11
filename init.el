@@ -67,8 +67,11 @@ This function should only modify configuration layer settings."
      better-defaults
      markdown
      imenu-list
+     chinese
+     spell-checking
      ;; scheme
      ;; html
+
      idris
      ;; (haskell :variables
      ;;         haskell-enable-hindent-style "gibiansky"
@@ -110,7 +113,9 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(protobuf-mode
-                                      sicp)
+                                      sicp
+                                      apib-mode)
+
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -594,36 +599,10 @@ you should place your code here."
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
 
-  ;; Diary titles
-  ;; Only works on Sunday
-  (defun my-org/diary-titles (week_number)
-    "Generate diary titles"
-    (interactive "sInput the number of next week:")
-    (insert "** W" week_number)
-    (defun one-title (day)
-      (newline)
-      (let ((time (+ (+ (car (cdr (current-time))) (* (car (current-time))
-                                                      (expt 2 16))) (* day 86400))))
-        (org-insert-time-stamp time nil t "*** ")))
-    (let ((day 1))
-      (while (< day 8)
-        (one-title day)
-        (setq day (+ day 1)))
-      (newline)
-      (insert "*** 总结")
-      (newline)
-      (insert "#+BEGIN: clocktable :maxlevel 2 :scope agenda-with-archives :block thisweek")
-      (newline)
-      (insert "#+END:")))
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 
-  ;; chinese support
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "Micro Hei Mono" :size 22)))
 )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
