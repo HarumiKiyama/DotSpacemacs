@@ -87,12 +87,14 @@ This function should only modify configuration layer settings."
           magit-save-repository-buffers 'dontask
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
-          magit-revision-show-gravatars nil)
-     lsp
+          magit-revision-show-gravatars nil
+          magit-repository-directories "~/projects"
+          )
      (python :variables
              python-test-runner 'pytest
              flycheck-python-flake8-executable "python3"
              flycheck-python-pycompile-executable "python3"
+             python-backend 'anaconda
              )
      (org :variables
           org-enable-reveal-js-support t
