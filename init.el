@@ -46,10 +46,11 @@ This function should only modify configuration layer settings."
      typography
      ;; scala
      yaml
-     games
-     slack
+     ;; games
+     ;; slack
      finance
-     ivy
+     ;; ivy
+     helm
      restclient
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -70,8 +71,7 @@ This function should only modify configuration layer settings."
      (haskell :variables
               haskell-enable-hindent t
               haskell-completion-backend 'intero
-              haskell-process-type 'stack-ghci
-              )
+              haskell-process-type 'stack-ghci)
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -86,7 +86,7 @@ This function should only modify configuration layer settings."
           org-enable-reveal-js-support t
           org-enable-github-support t
           org-journal-dir "~/org-mode/journal/"
-          org-journal-enable-encryption t)
+          )
      treemacs
      java
      ;;neotree
@@ -239,7 +239,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Dejavu sans mono"
-                               :size 18
+                               :size 22
                                :weight normal
                                :width normal)
 
@@ -472,10 +472,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  (setq configuration-layer-elpa-archives
-        '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "http://elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  ;; (setq configuration-layer-elpa-archives
+  ;;      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+  ;;        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+  ;;        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   )
 
@@ -537,7 +537,7 @@ you should place your code here."
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
                              "~/org-mode/routine.org"
-                             "~/org-mode/Esperanto.org"))
+                             ))
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
                                ("~/org-mode/someday.org" :maxlevel . 1)
@@ -585,10 +585,10 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 
   ;; chinese support
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
+  ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
+  ;;   (set-fontset-font (frame-parameter nil 'font)
+  ;;                     charset
+  ;;                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
 )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
