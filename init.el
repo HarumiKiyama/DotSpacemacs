@@ -83,7 +83,7 @@ This function should only modify configuration layer settings."
      python
      (org :variables
           org-enable-org-journal-support t
-          org-enable-reveal-js-support t
+          ;; org-enable-reveal-js-support t
           org-enable-github-support t
           org-journal-dir "~/org-mode/journal/"
           )
@@ -585,10 +585,10 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 
   ;; chinese support
-  ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
-  ;;   (set-fontset-font (frame-parameter nil 'font)
-  ;;                     charset
-  ;;                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+                      charset
+                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
 )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
