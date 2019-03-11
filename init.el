@@ -43,14 +43,13 @@ This function should only modify configuration layer settings."
      ;; go
      coq
      bm
+     ;; slack
      yaml
      ;; finance
      osx
      csv
      rust
-     ;; helm
-     (ivy :variables
-          ivy-highlight-grep-commands '())
+     helm
      ;; restclient
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -106,7 +105,9 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-shell 'eshell)
      syntax-checking
-     version-control
+     (version-control :variables
+                      version-control-diff-side 'right
+                      version-control-diff-tool 'git-gutter+)
      )
 
    ;; List of additional packages that will be installed without being
@@ -316,7 +317,7 @@ It should only modify the values of Spacemacs settings."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location nil
+   dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
 
@@ -492,10 +493,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "https://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
+  ;; (setq configuration-layer--elpa-archives
+  ;;       '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
+  ;;         ("org-cn"   . "https://elpa.zilongshanren.com/org/")
+  ;;         ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
@@ -522,42 +523,39 @@ before packages are loaded."
                                (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
   ;; timer setting
   (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/Frog.aiff")))
+
   (setq ledger-mode-should-check-version nil
         ledger-report-links-in-register nil
         ledger-binary-path "hledger")
   ;; c++ support
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   (add-hook 'c++-mode-hook 'clang-format-bindings)
+
   (defun clang-format-bindings ()
     (spacemacs/set-leader-keys-for-major-mode 'c++-mode
       "=" 'clang-format-buffer)
     )
 
   (setq tramp-default-method "ssh")
-  (setq tramp-default-user "root")
   ;; org-mode setting
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
     (setq org-tag-alist '(("@company" . ?C)
-                          ("crypt" . ?c)
                           ("routine" . ?r)
-                          ("Haskell" . ?h)
-                          ("Idris" . ?i)
-                          ("Python" . ?p)
-                          ("Algorithms" . ?a)
+                          ("programming" . ?p)
                           ("reading" . ?R)
-                          ("Japanese" . ?j)
-                          ("English" . ?e)
+                          ("trivial" . ?t)
+                          ("primatology" . ?P)
                           ))
+
     (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
                                    "** word :drill:\n%^{Esperanto}[%^{English}]")
                                   ("t" "thoughts" entry (file+headline "~/org-mode/notes.org" "Thoughts") "** %^{title}\n%<%Y-%m-%d>\n%?")
                                   ))
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
-                             "~/org-mode/routine.org"
-                             "~/org-mode/Esperanto.org"))
+                             "~/org-mode/routine.org"))
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
                                ("~/org-mode/routine.org" :maxlevel . 1)
@@ -595,9 +593,22 @@ before packages are loaded."
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
 
+
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+  ;; slack setting
+  ;; (slack-register-team
+  ;;    :name "deja"
+  ;;    :default t
+  ;;    :client-id "87492606786.466703476021"
+  ;;    :client-secret "4773d672fa955f8f59dd6ffade8fc6c2"
+  ;;    :token "token"
+  ;;    :subscribed-channels '(dataflow)
+  ;;    :full-and-display-names t)
+
+  ;; ispell setting
+  (ispell-change-dictionary "american" t)
 
 )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
