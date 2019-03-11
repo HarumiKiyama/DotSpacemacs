@@ -42,14 +42,12 @@ This function should only modify configuration layer settings."
      ;; go
      coq
      rust
-     pdf
      typography
      ;; scala
      yaml
      ;; games
      ;; slack
      finance
-     ;; ivy
      helm
      restclient
      (c-c++ :variables
