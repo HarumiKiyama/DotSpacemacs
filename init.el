@@ -87,7 +87,7 @@ This function should only modify configuration layer settings."
           org-journal-dir "~/org-mode/journal/"
           )
      treemacs
-     java
+     ;; java
      ;;neotree
      (shell :variables
             shell-default-shell 'eshell)
@@ -577,10 +577,6 @@ you should place your code here."
     (esperanto-change "SX" "Ŝ")
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
-
-  (defun test_wrong ()
-    (interactive)
-    (+ 1 "213"))
 
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
