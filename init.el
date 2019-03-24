@@ -82,6 +82,7 @@ This function should only modify configuration layer settings."
      (org :variables
           org-enable-org-journal-support t
           ;; org-enable-reveal-js-support t
+          org-enable-hugo-support t
           org-enable-github-support t
           org-journal-dir "~/org-mode/journal/"
           )
@@ -511,9 +512,9 @@ you should place your code here."
     (spacemacs/set-leader-keys-for-major-mode 'c++-mode
       "=" 'clang-format-buffer)
     )
-
   (setq tramp-default-method "ssh")
   (setq tramp-default-user "root")
+
   ;; org-mode setting
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
@@ -551,7 +552,6 @@ you should place your code here."
     ;; org-crypt setting
     (setq org-crypt-key "B77016C8B8ECEBE817DC0288CC09EA1921BDC71F"
           auto-save-default nil)
-    (define-key org-mode-map (kbd "\C-ct") 'my-org/diary-titles)
     (define-key org-mode-map (kbd "\C-cd") 'org-drill)
     )
   ;; UI setting
@@ -577,6 +577,10 @@ you should place your code here."
     (esperanto-change "SX" "Ŝ")
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
+
+  (defun test_wrong ()
+    (interactive)
+    (+ 1 "213"))
 
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
