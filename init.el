@@ -47,7 +47,7 @@ This function should only modify configuration layer settings."
      yaml
      ;; games
      ;; slack
-     finance
+     ;; finance
      helm
      restclient
      (c-c++ :variables
@@ -65,11 +65,9 @@ This function should only modify configuration layer settings."
      markdown
      imenu-list
      scheme
-     idris
      (haskell :variables
               haskell-enable-hindent t
-              haskell-completion-backend 'intero
-              haskell-process-type 'stack-ghci)
+              haskell-completion-backend 'ghci)
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -78,17 +76,18 @@ This function should only modify configuration layer settings."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
-     python
+     (python :variables
+             python-backend 'lsp)
+     lsp
      multiple-cursors
      (org :variables
           org-enable-org-journal-support t
           ;; org-enable-reveal-js-support t
           org-enable-hugo-support t
-          org-enable-github-support t
           org-journal-dir "~/org-mode/journal/"
           )
      treemacs
-     ;; java
+     java
      ;;neotree
      (shell :variables
             shell-default-shell 'eshell)
@@ -381,7 +380,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -403,7 +402,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -516,22 +515,17 @@ you should place your code here."
       "=" 'clang-format-buffer)
     )
   (setq tramp-default-method "ssh")
-  (setq tramp-default-user "root")
 
   ;; org-mode setting
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
     (setq org-tag-alist '(("@company" . ?C)
-                          ("crypt" . ?c)
                           ("routine" . ?r)
                           ("Haskell" . ?h)
-                          ("Idris" . ?i)
                           ("Python" . ?p)
                           ("Algorithms" . ?a)
-                          ("reading" . ?R)
-                          ("Japanese" . ?j)
-                          ("English" . ?e)
+                          ("Reading" . ?R)
                           ))
     (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
                                    "** word :drill:\n%^{Esperanto}[%^{English}]")
@@ -539,6 +533,7 @@ you should place your code here."
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
                              "~/org-mode/routine.org"
+                             "~/org-mode/blog.org"
                              ))
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
@@ -592,4 +587,4 @@ you should place your code here."
                       (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
 )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file 'no-error 'no-message)
+(load custom-file)

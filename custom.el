@@ -5,28 +5,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(calendar-week-start-day 1)
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
     ("345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" default)))
  '(deft-directory "/home/uruk/org-mode")
- '(diary-date-forms
-   (quote
-    ((month "/" day "[^/0-9]")
-     (year "[^0-9]" month "/" day "/")
-     (monthname " *" day "[^,0-9]")
-     (monthname " *" day ", *" year "[^0-9]")
-     (dayname "\\W"))))
- '(diary-file "~/org-mode/diary")
- '(diary-mail-addr "lucius0720@hotmail.com")
- '(ecb-options-version "2.50")
  '(evil-want-Y-yank-to-eol nil)
- '(exec-path-from-shell-variables nil)
  '(geiser-default-implementation (quote mit-scheme))
- '(global-visual-line-mode t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -60,7 +46,6 @@
  '(org-clock-persist (quote clock))
  '(org-confirm-babel-evaluate nil)
  '(org-drill-learn-fraction 0.45)
- '(org-export-backends (quote (beamer latex odt org md)))
  '(org-format-latex-options
    (quote
     (:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
@@ -82,7 +67,7 @@
  '(org-tag-alist (quote (("drill" . 100))))
  '(package-selected-packages
    (quote
-    (evil-mc zenburn-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill typo treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection spaceline-all-the-icons smeargle sicp shell-pop restclient-helm restart-emacs rainbow-delimiters racer pytest pyenv-mode py-isort proof-general popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox ox-hugo ox-gfm overseer orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file ob-restclient ob-http nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint intero indent-guide importmagic idris-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy font-lock+ flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-ledger flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-ledger evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-statistics company-rtags company-restclient company-coq company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+    (company-ghci lsp-ui lsp-java cquery company-lsp ccls lsp-mode dash-functional mvn meghanada maven-test-mode groovy-mode groovy-imports pcache gradle-mode ensime sbt-mode scala-mode company-emacs-eclim eclim pyvenv magit-popup epc ctable concurrent deferred prop-menu gitignore-mode fringe-helper git-gutter+ git-gutter pos-tip haskell-mode flycheck magit transient git-commit with-editor ledger-mode rtags restclient know-your-http-well company-math math-symbol-lists company markdown-mode rust-mode yasnippet anaconda-mode pythonic auto-complete evil-mc zenburn-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill typo treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection spaceline-all-the-icons smeargle sicp shell-pop restclient-helm restart-emacs rainbow-delimiters racer pytest pyenv-mode py-isort proof-general popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox ox-hugo ox-gfm overseer orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file ob-restclient ob-http nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint intero indent-guide importmagic idris-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy font-lock+ flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-ledger flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-ledger evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-statistics company-rtags company-restclient company-coq company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(scheme-program-name "guile")
