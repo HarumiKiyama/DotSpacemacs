@@ -51,9 +51,9 @@ This function should only modify configuration layer settings."
      ;; rust
      helm
      ;; restclient
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+     ;; (c-c++ :variables
+     ;;        c-c++-default-mode-for-headers 'c++-mode
+     ;;        c-c++-enable-clang-support t)
      (erc :variables
           erc-server "irc.freenode.net"
           erc-nick "harumi"
@@ -88,11 +88,12 @@ This function should only modify configuration layer settings."
           magit-revision-show-gravatars nil
           magit-repository-directories "~/projects"
           )
+     lsp
      (python :variables
              python-test-runner 'pytest
              flycheck-python-flake8-executable "python3"
              flycheck-python-pycompile-executable "python3"
-             python-backend 'anaconda)
+             python-backend 'lsp)
      (org :variables
           org-enable-hugo-support t)
      treemacs
