@@ -34,8 +34,7 @@
  '(org-agenda-window-setup (quote current-window))
  '(org-babel-load-languages
    (quote
-    ((http . t)
-     (java . t)
+    ((java . t)
      (shell . t)
      (python . t)
      (emacs-lisp . t)
@@ -65,9 +64,6 @@
  '(org-refile-use-outline-path (quote file))
  '(org-startup-indented t)
  '(org-tag-alist (quote (("drill" . 100))))
- '(package-selected-packages
-   (quote
-    (company-ghci lsp-ui lsp-java cquery company-lsp ccls lsp-mode dash-functional mvn meghanada maven-test-mode groovy-mode groovy-imports pcache gradle-mode ensime sbt-mode scala-mode company-emacs-eclim eclim pyvenv magit-popup epc ctable concurrent deferred prop-menu gitignore-mode fringe-helper git-gutter+ git-gutter pos-tip haskell-mode flycheck magit transient git-commit with-editor ledger-mode rtags restclient know-your-http-well company-math math-symbol-lists company markdown-mode rust-mode yasnippet anaconda-mode pythonic auto-complete evil-mc zenburn-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill typo treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection spaceline-all-the-icons smeargle sicp shell-pop restclient-helm restart-emacs rainbow-delimiters racer pytest pyenv-mode py-isort proof-general popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox ox-hugo ox-gfm overseer orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file ob-restclient ob-http nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint intero indent-guide importmagic idris-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy font-lock+ flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-ledger flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-ledger evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-statistics company-rtags company-restclient company-coq company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(scheme-program-name "guile")

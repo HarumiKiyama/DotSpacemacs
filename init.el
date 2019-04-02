@@ -40,16 +40,13 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; go
-     coq
+     ;; coq
      rust
      typography
      ;; scala
      yaml
-     ;; games
      ;; slack
-     ;; finance
      helm
-     restclient
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
@@ -82,12 +79,10 @@ This function should only modify configuration layer settings."
      multiple-cursors
      (org :variables
           org-enable-org-journal-support t
-          ;; org-enable-reveal-js-support t
           org-enable-hugo-support t
           org-journal-dir "~/org-mode/journal/"
           )
      treemacs
-     java
      ;;neotree
      (shell :variables
             shell-default-shell 'eshell)
