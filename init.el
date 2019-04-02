@@ -41,14 +41,14 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; javascript
      ;; go
-     coq
+     ;; coq
      bm
      ;; slack
      yaml
      ;; finance
      osx
      csv
-     rust
+     ;; rust
      helm
      ;; restclient
      (c-c++ :variables
@@ -62,8 +62,7 @@ This function should only modify configuration layer settings."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t
-                      :disabled-for markdown org
-                      )
+                      :disabled-for markdown org)
      better-defaults
      markdown
      imenu-list
@@ -72,7 +71,7 @@ This function should only modify configuration layer settings."
      ;; scheme
      ;; html
 
-     idris
+     ;; idris
      ;; (haskell :variables
      ;;         haskell-enable-hindent-style "gibiansky"
      ;;         haskell-completion-backend 'intero
@@ -93,10 +92,8 @@ This function should only modify configuration layer settings."
              python-test-runner 'pytest
              flycheck-python-flake8-executable "python3"
              flycheck-python-pycompile-executable "python3"
-             python-backend 'anaconda
-             )
+             python-backend 'anaconda)
      (org :variables
-          org-enable-reveal-js-support t
           org-enable-hugo-support t)
      treemacs
      ;;neotree

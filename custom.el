@@ -66,7 +66,6 @@
  '(org-clock-mode-line-total (quote current))
  '(org-clock-persist (quote clock))
  '(org-drill-learn-fraction 0.45)
- '(org-export-backends (quote (beamer html latex md odt)))
  '(org-format-latex-options
    (quote
     (:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
