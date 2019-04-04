@@ -47,20 +47,20 @@ This function should only modify configuration layer settings."
      yaml
      ;; slack
      helm
+     ;; ivy
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      (erc :variables
           erc-server "irc.freenode.net"
           erc-nick "uruk1993"
-          erc-port "6667"
-          )
+          erc-port "6667")
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
-     better-defaults
+     ;; better-defaults
      markdown
-     imenu-list
+     ;; imenu-list
      scheme
      (haskell :variables
               haskell-enable-hindent t
@@ -76,18 +76,17 @@ This function should only modify configuration layer settings."
      (python :variables
              python-backend 'lsp)
      lsp
-     multiple-cursors
+     ;; multiple-cursors
      (org :variables
           org-enable-org-journal-support t
           org-enable-hugo-support t
-          org-journal-dir "~/org-mode/journal/"
-          )
+          org-journal-dir "~/org-mode/journal/")
      treemacs
      ;;neotree
      (shell :variables
             shell-default-shell 'eshell)
      syntax-checking
-     version-control
+     ;; version-control
      )
 
    ;; List of additional packages that will be installed without being
