@@ -48,7 +48,7 @@ This function should only modify configuration layer settings."
      ;; finance
      osx
      csv
-     ;; rust
+     rust
      helm
      ;; restclient
      ;; (c-c++ :variables
@@ -56,7 +56,7 @@ This function should only modify configuration layer settings."
      ;;        c-c++-enable-clang-support t)
      (erc :variables
           erc-server "irc.freenode.net"
-          erc-nick "harumi"
+          erc-nick "harumi0720"
           erc-port "6667"
           )
      (auto-completion :variables
