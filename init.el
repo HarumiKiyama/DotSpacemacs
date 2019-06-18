@@ -41,7 +41,8 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; go
      ;; coq
-     rust
+     (rust :variables
+           rust-backend 'lsp)
      typography
      ;; scala
      yaml
@@ -63,7 +64,6 @@ This function should only modify configuration layer settings."
      ;; imenu-list
      scheme
      (haskell :variables
-              haskell-enable-hindent t
               haskell-completion-backend 'ghci)
      emacs-lisp
      (git :variables
@@ -74,7 +74,7 @@ This function should only modify configuration layer settings."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
      (python :variables
-             python-backend 'lsp)
+             python-backend 'anaconda)
      lsp
      ;; multiple-cursors
      (org :variables
@@ -206,6 +206,11 @@ It should only modify the values of Spacemacs settings."
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
 
+   ;; Default major mode for a new empty buffer. Possible values are mode
+   ;; names such as `text-mode'; and `nil' to use Fundamental mode.
+   ;; (default `text-mode')
+   dotspacemacs-new-empty-buffer-major-mode 'text-mode
+
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
@@ -334,6 +339,11 @@ It should only modify the values of Spacemacs settings."
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
    dotspacemacs-maximized-at-startup nil
+
+   ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
+   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
+   ;; borderless fullscreen. (default nil)
+   dotspacemacs-undecorated-at-startup nil
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
@@ -467,10 +477,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  ;; (setq configuration-layer-elpa-archives
-  ;;      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-  ;;        ("org-cn"   . "http://elpa.emacs-china.org/org/")
-  ;;        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  (setq configuration-layer-elpa-archives
+        '(("melpa" . "http://elpa.emacs-china.org/melpa/")
+          ("org"   . "http://elpa.emacs-china.org/org/")
+          ("gnu"   . "http://elpa.emacs-china.org/gnu/")))
 
   )
 
@@ -495,7 +505,6 @@ you should place your code here."
   (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
   (add-hook 'kill-emacs-hook (lambda ()
                                (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
-  (setq racer-rust-src-path (getenv "RUST_SRC_PATH"))
   ;; timer setting
   (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/bell.wav")))
   (setq ledger-mode-should-check-version nil
@@ -578,7 +587,6 @@ you should place your code here."
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
-                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
-)
+                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22))))
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file)
