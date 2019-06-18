@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -42,11 +42,12 @@ This function should only modify configuration layer settings."
      ;; javascript
      ;; go
      ;; coq
+     javascript
      bm
      ;; slack
      yaml
      ;; finance
-     osx
+     ;; osx
      csv
      rust
      helm
@@ -66,7 +67,7 @@ This function should only modify configuration layer settings."
      better-defaults
      markdown
      imenu-list
-     chinese
+     ;; chinese
      spell-checking
      ;; scheme
      ;; html
@@ -504,10 +505,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  ;; (setq configuration-layer-elpa-archives
-  ;;       '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
-  ;;         ("org-cn"   . "https://elpa.emacs-china.org/org/")
-  ;;         ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
+  ;(setq configuration-layer-elpa-archives
+  ;      '(("melpa-cn" . "elpa.emacs-china.org/melpa/")
+  ;        ("org-cn"   . "elpa.emacs-china.org/org/")
+  ;        ("gnu-cn"   . "elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
@@ -529,15 +530,12 @@ before packages are loaded."
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)
   ;; automatically async git repo
-  (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
-  (add-hook 'kill-emacs-hook (lambda ()
-                               (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
+  ;; (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
+  ;; (add-hook 'kill-emacs-hook (lambda ()
+  ;;                             (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
   ;; timer setting
-  (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/Frog.aiff")))
+  ;; (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/Frog.aiff")))
 
-  (setq ledger-mode-should-check-version nil
-        ledger-report-links-in-register nil
-        ledger-binary-path "hledger")
   ;; c++ support
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   (add-hook 'c++-mode-hook 'clang-format-bindings)
@@ -608,15 +606,6 @@ before packages are loaded."
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
-  ;; slack setting
-  ;; (slack-register-team
-  ;;    :name "deja"
-  ;;    :default t
-  ;;    :client-id "87492606786.466703476021"
-  ;;    :client-secret "4773d672fa955f8f59dd6ffade8fc6c2"
-  ;;    :token "token"
-  ;;    :subscribed-channels '(dataflow)
-  ;;    :full-and-display-names t)
 
   ;; ispell setting
   (ispell-change-dictionary "american" t)
