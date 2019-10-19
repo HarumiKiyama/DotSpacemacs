@@ -43,12 +43,15 @@ This function should only modify configuration layer settings."
      ;; coq
      (rust :variables
            rust-backend 'lsp)
+     ruby-on-rails
+     ruby
+     html
      typography
+     haskell
      ;; scala
      yaml
      ;; slack
      helm
-     ;; ivy
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
@@ -63,8 +66,6 @@ This function should only modify configuration layer settings."
      markdown
      ;; imenu-list
      scheme
-     (haskell :variables
-              haskell-completion-backend 'ghci)
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -72,9 +73,8 @@ This function should only modify configuration layer settings."
           magit-save-repository-buffers 'dontask
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
-          magit-revision-show-gravatars nil)
-     (python :variables
-             python-backend 'anaconda)
+          magit-revision-show-gravatars t)
+     python
      lsp
      ;; multiple-cursors
      (org :variables
@@ -82,6 +82,8 @@ This function should only modify configuration layer settings."
           org-enable-hugo-support t
           org-journal-dir "~/org-mode/journal/")
      treemacs
+     pdf
+     go
      ;;neotree
      (shell :variables
             shell-default-shell 'eshell)
@@ -102,7 +104,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(exec-path-from-shell)
+   dotspacemacs-excluded-packages '(exec-path-from-shell
+                                    lsp-python-ms)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -477,10 +480,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  (setq configuration-layer-elpa-archives
-        '(("melpa" . "http://elpa.emacs-china.org/melpa/")
-          ("org"   . "http://elpa.emacs-china.org/org/")
-          ("gnu"   . "http://elpa.emacs-china.org/gnu/")))
+  ;; (setq configuration-layer-elpa-archives
+  ;;       '(("melpa" . "http://elpa.emacs-china.org/melpa/")
+  ;;         ("org"   . "http://elpa.emacs-china.org/org/")
+  ;;         ("gnu"   . "http://elpa.emacs-china.org/gnu/")))
 
   )
 
@@ -525,7 +528,7 @@ you should place your code here."
                                         "DONE(d!)" "ABORT(a)")))
     (setq org-tag-alist '(("@company" . ?C)
                           ("routine" . ?r)
-                          ("Haskell" . ?h)
+                          ;; ("Haskell" . ?h)
                           ("Python" . ?p)
                           ("Algorithms" . ?a)
                           ("Reading" . ?R)
