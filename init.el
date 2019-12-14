@@ -43,6 +43,7 @@ This function should only modify configuration layer settings."
      ;; coq
      (rust :variables
            rust-backend 'lsp)
+     javascript
      ruby-on-rails
      ruby
      html
@@ -75,7 +76,6 @@ This function should only modify configuration layer settings."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars t)
      python
-     lsp
      ;; multiple-cursors
      (org :variables
           org-enable-org-journal-support t
@@ -480,11 +480,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  ;; (setq configuration-layer-elpa-archives
-  ;;       '(("melpa" . "http://elpa.emacs-china.org/melpa/")
-  ;;         ("org"   . "http://elpa.emacs-china.org/org/")
-  ;;         ("gnu"   . "http://elpa.emacs-china.org/gnu/")))
-
+   (setq configuration-layer-elpa-archives
+         '(("melpa" . "http://elpa.emacs-china.org/melpa/")
+           ("org"   . "http://elpa.emacs-china.org/org/")
+           ("gnu"   . "http://elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
@@ -524,6 +523,7 @@ you should place your code here."
 
   ;; org-mode setting
   (with-eval-after-load 'org
+    (setq org-babel-eval-verbose t)
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
     (setq org-tag-alist '(("@company" . ?C)
