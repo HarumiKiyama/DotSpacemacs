@@ -44,7 +44,6 @@ This function should only modify configuration layer settings."
      (rust :variables
            rust-backend 'lsp)
      javascript
-     ruby-on-rails
      ruby
      html
      typography
@@ -88,6 +87,7 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-shell 'eshell)
      syntax-checking
+     leetcode
      ;; version-control
      )
 
@@ -203,8 +203,9 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+   dotspacemacs-startup-lists '((bookmarks . 3)
+                                (recents . 3)
+                                (projects . 3))
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -509,6 +510,7 @@ you should place your code here."
                                (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
   ;; timer setting
   (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/bell.wav")))
+
   (setq ledger-mode-should-check-version nil
         ledger-report-links-in-register nil
         ledger-binary-path "hledger")
@@ -556,10 +558,11 @@ you should place your code here."
     ;; org-crypt setting
     (setq org-crypt-key "B77016C8B8ECEBE817DC0288CC09EA1921BDC71F"
           auto-save-default nil)
+
     (define-key org-mode-map (kbd "\C-cd") 'org-drill)
     )
   ;; UI setting
-  (spacemacs/toggle-vi-tilde-fringe-off)
+  ;; (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
 
   ;; Esperanto function setting
@@ -587,9 +590,10 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
 
   ;; chinese support
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 22))))
+  ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
+  ;;   (set-fontset-font (frame-parameter nil 'font)
+  ;;                     charset
+  ;;                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 22)))
+  )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file)
