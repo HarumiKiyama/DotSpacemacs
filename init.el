@@ -55,10 +55,7 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     (erc :variables
-          erc-server "irc.freenode.net"
-          erc-nick "uruk1993"
-          erc-port "6667")
+     erc
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
@@ -74,7 +71,8 @@ This function should only modify configuration layer settings."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars t)
-     python
+     (python :variables
+             python-formatter 'yapf)
      ;; multiple-cursors
      (org :variables
           org-enable-org-journal-support t
@@ -88,6 +86,7 @@ This function should only modify configuration layer settings."
             shell-default-shell 'eshell)
      syntax-checking
      leetcode
+     ;; eww
      ;; version-control
      )
 
@@ -285,7 +284,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
@@ -528,10 +527,7 @@ you should place your code here."
     (setq org-babel-eval-verbose t)
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
-    (setq org-tag-alist '(("@company" . ?C)
-                          ("routine" . ?r)
-                          ;; ("Haskell" . ?h)
-                          ("Python" . ?p)
+    (setq org-tag-alist '(("routine" . ?r)
                           ("Algorithms" . ?a)
                           ("Reading" . ?R)
                           ))
@@ -555,14 +551,10 @@ you should place your code here."
     (setq org-journal-date-format "%Y-%m-%d %A"
           org-journal-time-format ""
           org-journal-time-prefix "")
-    ;; org-crypt setting
-    (setq org-crypt-key "B77016C8B8ECEBE817DC0288CC09EA1921BDC71F"
-          auto-save-default nil)
 
     (define-key org-mode-map (kbd "\C-cd") 'org-drill)
     )
   ;; UI setting
-  ;; (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
 
   ;; Esperanto function setting
@@ -588,6 +580,19 @@ you should place your code here."
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+
+  ;; personal layouts
+  (spacemacs|define-custom-layout "@leetcode"
+    :binding "l"
+    :body
+    (progn
+      (defun spacemacs-layouts/add-leetcode-buffer-to-persp ()
+        (persp-add-buffer (current-buffer)
+                          (persp-get-by-name
+                           "@leetcode")))
+      (add-hook 'leetcode--problems-mode-hook #'spacemacs-layouts/add-leetcode-buffer-to-persp)
+      (leetcode)
+      ))
 
   ;; chinese support
   ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
