@@ -505,10 +505,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Use Chinese mirror
-  ;(setq configuration-layer-elpa-archives
-  ;      '(("melpa-cn" . "elpa.emacs-china.org/melpa/")
-  ;        ("org-cn"   . "elpa.emacs-china.org/org/")
-  ;        ("gnu-cn"   . "elpa.emacs-china.org/gnu/")))
+  (setq configuration-layer-elpa-archives
+        '(("melpa-cn" . "elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
