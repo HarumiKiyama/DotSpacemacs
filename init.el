@@ -558,10 +558,32 @@ before packages are loaded."
                           ("primatology" . ?P)
                           ))
 
-    (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
-                                   "** word :drill:\n%^{Esperanto}[%^{English}]")
-                                  ("t" "thoughts" entry (file+headline "~/org-mode/notes.org" "Thoughts") "** %^{title}\n%<%Y-%m-%d>\n%?")
-                                  ))
+    (setq org-capture-templates '(("w" "Words" entry (file+headline "Esperanto.org" "Words")
+           "** word :drill:\n%^{Esperanto}[%^{English}]")
+          ("e" "Emacs" entry (file+headline "task.org" "Emacs Hacking") "** TODO %?")
+          ("a" "Algorithm" entry (file +create-algorithm-org-file) "* Description\n%?\n* Solution")
+          ("t" "Trivial" entry (file+headline "task.org" "Trivial") "** TODO %?")
+          ("b" "Blog" entry (file "blog.org") "* SUSPEND %?")
+          ;; Will use {org-directory}/{+org-capture-projects-file} and store
+          ;; these under {ProjectName}/{Tasks,Notes,Changelog} headings. They
+          ;; support `:parents' to specify what headings to put them under, e.g.
+          ;; :parents ("Projects")
+          ("o" "Centralized templates for projects")
+          ("ot" "Project todo" entry
+           (function +org-capture-central-project-todo-file)
+           "* TODO %?\n %i\n %a"
+           :heading "Tasks"
+           :prepend nil)
+          ("on" "Project notes" entry
+           (function +org-capture-central-project-notes-file)
+           "* %U %?\n %i\n %a"
+           :heading "Notes"
+           :prepend t)
+          ("oc" "Project changelog" entry
+           (function +org-capture-central-project-changelog-file)
+           "* %U %?\n %i\n %a"
+           :heading "Changelog"
+           :prepend t)))
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
                              "~/org-mode/routine.org"))
