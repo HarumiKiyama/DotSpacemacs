@@ -26,7 +26,6 @@ This function should only modify configuration layer settings."
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
 
-   ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -47,7 +46,7 @@ This function should only modify configuration layer settings."
      ruby
      html
      typography
-     haskell
+     ;; haskell
      ;; scala
      yaml
      ;; slack
@@ -62,7 +61,7 @@ This function should only modify configuration layer settings."
      ;; better-defaults
      markdown
      ;; imenu-list
-     scheme
+     ;; scheme
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
@@ -72,6 +71,7 @@ This function should only modify configuration layer settings."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars t)
      (python :variables
+             python-backend 'anaconda
              python-formatter 'yapf)
      ;; multiple-cursors
      (org :variables
@@ -79,13 +79,12 @@ This function should only modify configuration layer settings."
           org-enable-hugo-support t
           org-journal-dir "~/org-mode/journal/")
      treemacs
-     pdf
-     go
+     ;; pdf
+     ;; go
      ;;neotree
      (shell :variables
             shell-default-shell 'eshell)
      syntax-checking
-     leetcode
      ;; eww
      ;; version-control
      )
@@ -103,8 +102,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(exec-path-from-shell
-                                    lsp-python-ms)
+   dotspacemacs-excluded-packages '()
+
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -128,10 +127,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
-   ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; for the portable dumper (this is currently the branch pdumper).
-   ;; (default "emacs-27.0.50")
-   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+   ;; Name of executable file pointing to emacs 27+. This executable must be
+   ;; in your PATH.
+   ;; (default "emacs")
+   dotspacemacs-emacs-pdumper-executable-file "emacs"
 
    ;; Name of the Spacemacs dump file. This is the file will be created by the
    ;; portable dumper in the cache directory under dumps sub-directory.
@@ -185,8 +184,11 @@ It should only modify the values of Spacemacs settings."
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
    dotspacemacs-editing-style 'hybrid
-   ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
+
+   ;; If non-nil show the version string in the Spacemacs buffer. It will
+   ;; appear as (spacemacs version)@(emacs version)
+   ;; (default t)
+   dotspacemacs-startup-buffer-show-version t
 
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -241,7 +243,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Dejavu sans mono"
-                               :size 22
+                               :size 18
                                :weight normal
                                :width normal)
 
@@ -284,7 +286,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
@@ -375,10 +377,14 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smooth-scrolling t
 
    ;; Control line numbers activation.
-   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
-   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
+   ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
+   ;; numbers are relative. If set to `visual', line numbers are also relative,
+   ;; but lines are only visual lines are counted. For example, folded lines
+   ;; will not be counted and wrapped lines are counted as multiple lines.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
+   ;;   :visual nil
    ;;   :disabled-for-modes dired-mode
    ;;                       doc-view-mode
    ;;                       markdown-mode
@@ -386,6 +392,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       pdf-view-mode
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
+   ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
    dotspacemacs-line-numbers 'relative
 
@@ -398,7 +405,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
-   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
    dotspacemacs-smart-closing-parenthesis nil
 
@@ -455,7 +462,15 @@ It should only modify the values of Spacemacs settings."
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'trailing
+   dotspacemacs-whitespace-cleanup nil
+
+   ;; If non nil activate `clean-aindent-mode' which tries to correct
+   ;; virtual indentation of simple modes. This can interfer with mode specific
+   ;; indent handling like has been reported for `go-mode'.
+   ;; If it does deactivate it here.
+   ;; (default t)
+   dotspacemacs-use-clean-aindent-mode t
+
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
    dotspacemacs-zone-out-when-idle nil
@@ -479,7 +494,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  ;; Use Chinese mirror
+   ;; Use Chinese mirror
    (setq configuration-layer-elpa-archives
          '(("melpa" . "http://elpa.emacs-china.org/melpa/")
            ("org"   . "http://elpa.emacs-china.org/org/")
@@ -507,12 +522,6 @@ you should place your code here."
   (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
   (add-hook 'kill-emacs-hook (lambda ()
                                (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
-  ;; timer setting
-  (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/bell.wav")))
-
-  (setq ledger-mode-should-check-version nil
-        ledger-report-links-in-register nil
-        ledger-binary-path "hledger")
   ;; c++ support
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   (add-hook 'c++-mode-hook 'clang-format-bindings)
@@ -527,32 +536,30 @@ you should place your code here."
     (setq org-babel-eval-verbose t)
     (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
                                         "DONE(d!)" "ABORT(a)")))
-    (setq org-tag-alist '(("routine" . ?r)
-                          ("Algorithms" . ?a)
-                          ("Reading" . ?R)
-                          ))
-    (setq org-capture-templates '(("w" "Words" entry (file+headline "~/org-mode/Esperanto.org" "Words")
-                                   "** word :drill:\n%^{Esperanto}[%^{English}]")
-                                  ))
     (setq org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
-                             "~/org-mode/routine.org"
                              "~/org-mode/blog.org"
                              ))
     (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
                                ("~/org-mode/someday.org" :maxlevel . 1)
                                ("~/org-mode/blog.org" :maxlevel . 1)
-                               (nil . (:maxlevel . 2))
-                               ))
+                               (nil . (:maxlevel . 2))))
     (setq org-archive-location "~/org-mode/archive.org::")
     (setq org-startup-truncated nil)
     ;; org-journal setting
     (setq org-journal-date-format "%Y-%m-%d %A"
           org-journal-time-format ""
           org-journal-time-prefix "")
-
-    (define-key org-mode-map (kbd "\C-cd") 'org-drill)
+    ;; org-capture
+    (setq org-capture-templates
+        '(("w" "Words" entry (file+headline "Esperanto.org" "Words")
+           "** word :drill:\n%^{Esperanto}[%^{English}]")
+          ("e" "Emacs" entry (file+headline "task.org" "Emacs Hacking") "** TODO %?")
+          ("a" "Algorithm" entry (file +create-algorithm-org-file) "* Description\n%?\n* Solution")
+          ("t" "Trivial" entry (file+headline "task.org" "Trivial") "** TODO %?")
+          ("b" "Blog" entry (file "blog.org") "* SUSPEND %?"))
+        org-directory "~/org-mode")
     )
   ;; UI setting
   (setq scroll-margin 5)
@@ -580,19 +587,6 @@ you should place your code here."
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
-
-  ;; personal layouts
-  (spacemacs|define-custom-layout "@leetcode"
-    :binding "l"
-    :body
-    (progn
-      (defun spacemacs-layouts/add-leetcode-buffer-to-persp ()
-        (persp-add-buffer (current-buffer)
-                          (persp-get-by-name
-                           "@leetcode")))
-      (add-hook 'leetcode--problems-mode-hook #'spacemacs-layouts/add-leetcode-buffer-to-persp)
-      (leetcode)
-      ))
 
   ;; chinese support
   ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
