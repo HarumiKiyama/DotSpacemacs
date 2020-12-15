@@ -66,14 +66,10 @@ This function should only modify configuration layer settings."
      imenu-list
      spell-checking
      ;; scheme
-     ;; html
-
-     ;; idris
      ;; (haskell :variables
      ;;         haskell-enable-hindent-style "gibiansky"
      ;;         haskell-completion-backend 'intero
-     ;;         haskell-process-type 'stack-ghci
-     ;;         )
+     ;;         haskell-process-type 'stack-ghci)
      emacs-lisp
      ;; mu4e
      (git :variables
@@ -588,17 +584,17 @@ before packages are loaded."
   (setq tramp-default-method "ssh")
   ;; org-mode setting
   (with-eval-after-load 'org
-    (setq org-todo-keywords '((sequence "TODO(t)" "TESTING(t)" "SUSPEND(p)" "|"
-                                        "DONE(d!)" "ABORT(a)")))
-    (setq org-tag-alist '(("@company" . ?C)
-                          ("routine" . ?r)
-                          ("programming" . ?p)
-                          ("reading" . ?R)
-                          ("trivial" . ?t)
-                          ("primatology" . ?P)
-                          ))
-
-    (setq org-capture-templates '(("w" "Words" entry (file+headline "Esperanto.org" "Words")
+    (setq org-todo-keywords '((sequence "TODO(t)" "START" "SUSPEND(p)" "|" "DONE(d!)" "ABORT(a!)"))
+          org-todo-keyword-faces '(("START" . (:inherit (bold org-scheduled-today)))
+				                   ("SUSPEND" . (:inherit (bold warning)))
+				                   ("ABORT" . (:inherit (bold error))))
+          org-clock-in-switch-to-state "START"
+	      org-clock-out-switch-to-state "TODO"
+	      org-clock-persist t
+          org-tag-alist '(("Routine" . ?r)
+                          ("Programming" . ?p)
+                          ("Reading" . ?R))
+          org-capture-templates '(("w" "Words" entry (file+headline "Esperanto.org" "Words")
            "** word :drill:\n%^{Esperanto}[%^{English}]")
           ("e" "Emacs" entry (file+headline "task.org" "Emacs Hacking") "** TODO %?")
           ("a" "Algorithm" entry (file +create-algorithm-org-file) "* Description\n%?\n* Solution")
@@ -608,38 +604,23 @@ before packages are loaded."
           ;; these under {ProjectName}/{Tasks,Notes,Changelog} headings. They
           ;; support `:parents' to specify what headings to put them under, e.g.
           ;; :parents ("Projects")
-          ("o" "Centralized templates for projects")
-          ("ot" "Project todo" entry
-           (function +org-capture-central-project-todo-file)
-           "* TODO %?\n %i\n %a"
-           :heading "Tasks"
-           :prepend nil)
-          ("on" "Project notes" entry
-           (function +org-capture-central-project-notes-file)
-           "* %U %?\n %i\n %a"
-           :heading "Notes"
-           :prepend t)
-          ("oc" "Project changelog" entry
-           (function +org-capture-central-project-changelog-file)
-           "* %U %?\n %i\n %a"
-           :heading "Changelog"
-           :prepend t)))
-    (setq org-agenda-files '("~/org-mode/task.org"
+          )
+          org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
-                             "~/org-mode/routine.org"))
-    (setq org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
+                             "~/org-mode/blog.org")
+          org-refile-targets '(("~/org-mode/task.org" :maxlevel . 1)
                                ("~/org-mode/notes.org" :maxlevel . 1)
-                               ("~/org-mode/routine.org" :maxlevel . 1)
                                ("~/org-mode/someday.org" :maxlevel . 1)
-                               (nil . (:maxlevel . 2))
-                               ))
-    (setq org-archive-location "~/org-mode/archive.org::")
-    (setq org-startup-truncated nil)
+                               ("~/org-mode/blog.org" :maxlevel . 1)
+                               (nil . (:maxlevel . 2)))
+          org-refile-use-outline-path 'file
+          org-archive-location "~/org-mode/archive.org::"
+          org-startup-truncated nil
+          )
     (define-key org-mode-map (kbd "\C-ct") 'my-org/diary-titles)
     (setq org-crypt-key "B77016C8B8ECEBE817DC0288CC09EA1921BDC71F"
           auto-save-default nil)
-    (define-key org-mode-map (kbd "\C-cd") 'org-drill)
-    )
+    (define-key org-mode-map (kbd "\C-cd") 'org-drill))
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
   (setq scroll-margin 5)
