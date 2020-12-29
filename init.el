@@ -64,7 +64,8 @@ This function should only modify configuration layer settings."
      better-defaults
      markdown
      imenu-list
-     spell-checking
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil)
      ;; scheme
      ;; (haskell :variables
      ;;         haskell-enable-hindent-style "gibiansky"
@@ -88,9 +89,11 @@ This function should only modify configuration layer settings."
              flycheck-python-pycompile-executable "python3"
              python-backend 'lsp)
      (org :variables
-          org-enable-hugo-support t)
+          org-enable-hugo-support t
+          org-enable-org-journal-support t
+          org-journal-dir "~/org-mode/journal/"
+	      org-journal-date-format "%Y-%m-%d %A")
      treemacs
-     ;;neotree
      spacemacs-language
      spacemacs-org
      (shell :variables
@@ -566,9 +569,9 @@ before packages are loaded."
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)
   ;; automatically async git repo
-  ;; (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
-  ;; (add-hook 'kill-emacs-hook (lambda ()
-  ;;                             (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
+  (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
+  (add-hook 'kill-emacs-hook (lambda ()
+                              (call-process-shell-command "cd ~/org-mode && git add .&&git commit -m \"$(date +%Y/%m/%d)\"&&git push" nil 0 0)))
   ;; timer setting
   ;; (add-hook 'org-timer-done-hook (lambda () (play-sound-file "~/sound/Frog.aiff")))
 
@@ -578,10 +581,8 @@ before packages are loaded."
 
   (defun clang-format-bindings ()
     (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-      "=" 'clang-format-buffer)
-    )
+      "=" 'clang-format-buffer))
 
-  (setq tramp-default-method "ssh")
   ;; org-mode setting
   (with-eval-after-load 'org
     (setq org-todo-keywords '((sequence "TODO(t)" "START" "SUSPEND(p)" "|" "DONE(d!)" "ABORT(a!)"))
@@ -594,17 +595,10 @@ before packages are loaded."
           org-tag-alist '(("Routine" . ?r)
                           ("Programming" . ?p)
                           ("Reading" . ?R))
-          org-capture-templates '(("w" "Words" entry (file+headline "Esperanto.org" "Words")
-           "** word :drill:\n%^{Esperanto}[%^{English}]")
-          ("e" "Emacs" entry (file+headline "task.org" "Emacs Hacking") "** TODO %?")
-          ("a" "Algorithm" entry (file +create-algorithm-org-file) "* Description\n%?\n* Solution")
-          ("t" "Trivial" entry (file+headline "task.org" "Trivial") "** TODO %?")
-          ("b" "Blog" entry (file "blog.org") "* SUSPEND %?")
-          ;; Will use {org-directory}/{+org-capture-projects-file} and store
-          ;; these under {ProjectName}/{Tasks,Notes,Changelog} headings. They
-          ;; support `:parents' to specify what headings to put them under, e.g.
-          ;; :parents ("Projects")
-          )
+          org-capture-templates '(("e" "Emacs" entry (file+headline "task.org" "Emacs Hacking") "** TODO %?")
+                                  ("a" "Algorithm" entry (file +create-algorithm-org-file) "* Description\n%?\n* Solution")
+                                  ("t" "Trivial" entry (file+headline "task.org" "Trivial") "** TODO %?")
+                                  ("b" "Blog" entry (file "blog.org") "* SUSPEND %?"))
           org-agenda-files '("~/org-mode/task.org"
                              "~/org-mode/notation.org"
                              "~/org-mode/blog.org")
