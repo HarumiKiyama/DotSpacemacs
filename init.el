@@ -612,8 +612,6 @@ before packages are loaded."
           org-startup-truncated nil
           )
     (define-key org-mode-map (kbd "\C-ct") 'my-org/diary-titles)
-    (setq org-crypt-key "B77016C8B8ECEBE817DC0288CC09EA1921BDC71F"
-          auto-save-default nil)
     (define-key org-mode-map (kbd "\C-cd") 'org-drill))
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
