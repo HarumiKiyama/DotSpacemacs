@@ -545,6 +545,9 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
+  (setq default-directory "~/"
+        command-line-default-directory "~/")
   ;; Use Chinese mirror
   (setq configuration-layer-elpa-archives
         '(("melpa-cn" . "elpa.emacs-china.org/melpa/")
@@ -566,8 +569,8 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (spacemacs/toggle-mode-line-org-clock-on)
-  (setq-default tab-width 4)
-  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4
+                indent-tabs-mode nil)
   ;; automatically async git repo
   (start-process-shell-command "git-pull" nil "cd ~/org-mode&& git pull")
   (add-hook 'kill-emacs-hook (lambda ()
