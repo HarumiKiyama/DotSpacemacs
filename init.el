@@ -38,14 +38,13 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; javascript
-     ;; go
+     (go :variables go-backend 'lsp)
+     dap
      ;; coq
      javascript
      bm
-     ;; slack
      yaml
-     ;; finance
+     finance
      osx
      csv
      rust
@@ -54,7 +53,7 @@ This function should only modify configuration layer settings."
      ;;        c-c++-default-mode-for-headers 'c++-mode
      ;;        c-c++-enable-clang-support t)
      (erc :variables
-          erc-server "irc.freenode.net"
+          erc-server "irc.libera.chat"
           erc-nick "harumi0720"
           erc-port "6667")
      (auto-completion :variables
@@ -66,13 +65,7 @@ This function should only modify configuration layer settings."
      imenu-list
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
-     ;; scheme
-     ;; (haskell :variables
-     ;;         haskell-enable-hindent-style "gibiansky"
-     ;;         haskell-completion-backend 'intero
-     ;;         haskell-process-type 'stack-ghci)
      emacs-lisp
-     ;; mu4e
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -80,13 +73,11 @@ This function should only modify configuration layer settings."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil
-          magit-repository-directories "~/projects"
-          )
+          magit-repository-directories "~/projects")
      lsp
      (python :variables
              python-test-runner 'pytest
-             flycheck-python-flake8-executable "python3"
-             flycheck-python-pycompile-executable "python3"
+             python-lsp-server 'pyright
              python-backend 'lsp)
      (org :variables
           org-enable-hugo-support t
@@ -549,10 +540,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq default-directory "~/"
         command-line-default-directory "~/")
   ;; Use Chinese mirror
-  (setq configuration-layer-elpa-archives
-        '(("melpa-cn" . "elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "elpa.emacs-china.org/gnu/")))
+  ;; (setq configuration-layer-elpa-archives
+        ;; '(("melpa-cn" . "elpa.emacs-china.org/melpa/")
+          ;; ("org-cn"   . "elpa.emacs-china.org/org/")
+          ;; ("gnu-cn"   . "elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
@@ -568,6 +559,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq epg-pinentry-mode 'loopback)
   (spacemacs/toggle-mode-line-org-clock-on)
   (setq-default tab-width 4
                 indent-tabs-mode nil)
@@ -639,6 +631,20 @@ before packages are loaded."
     (esperanto-change "SX" "Ŝ")
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
+
+  ;; ledger setting
+  (setq ledger-reports
+        '(("balance" "hledger -f %(ledger-file) bs")
+          ("cashflow" "hledger -f %(ledger-file) cf")
+          ("incomestatement" "hledger -f %(ledger-file) is")
+          ("investments" "hledger -f %(ledger-file) roi"))
+        ledger-binary-path "hledger"
+        ledger-mode-should-check-version nil
+        ledger-report-links-in-register nil
+        ledger-report-auto-width nil
+        ledger-report-use-native-highlighting nil)
+  (add-to-list 'auto-mode-alist '("\\.ledger" . ledger-mode))
+
 
 
   ; personal keybinding
