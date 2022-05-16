@@ -39,6 +39,9 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      go
+     helpful
+     elfeed
+     ipython-notebook
      ;; coq
      (rust :variables
            rust-backend 'lsp)
@@ -69,7 +72,6 @@ This function should only modify configuration layer settings."
      (python :variables
              python-backend 'lsp
              python-lsp-server 'pyright)
-     ;; multiple-cursors
      (org :variables
           org-enable-org-journal-support t
           org-enable-hugo-support t
@@ -580,6 +582,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (spacemacs/toggle-mode-line-org-clock-on)
+  (setq url-proxy-services '(("http" . "localhost:7890")
+                             ("https" . "localhost:7890")))
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)
   ;; automatically async git repo
