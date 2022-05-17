@@ -40,7 +40,7 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      go
      helpful
-     elfeed
+     (elfeed :variables rmh-elfeed-org-files '("~/org-mode/elfeed.org"))
      ipython-notebook
      ;; coq
      (rust :variables
