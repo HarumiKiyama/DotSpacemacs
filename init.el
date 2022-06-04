@@ -48,7 +48,7 @@ This function should only modify configuration layer settings."
      javascript
      bm
      yaml
-     finance
+     ;; finance
      osx
      csv
      rust
@@ -161,7 +161,7 @@ It should only modify the values of Spacemacs settings."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https nil
+   dotspacemacs-elpa-https t
 
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
@@ -587,7 +587,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         ("nongnu"   . "elpa.nongnu.org/nongnu/")
         ("gnu-cn"   . "elpa.emacs-china.org/gnu/")))
 )
-
 
 
 (defun dotspacemacs/user-load ()

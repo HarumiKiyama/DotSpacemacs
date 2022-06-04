@@ -65,7 +65,7 @@
  '(org-modules '(org-bbdb org-bibtex org-docview org-habit))
  '(org-outline-path-complete-in-steps nil)
  '(org-pomodoro-play-sounds t)
- '(org-refile-use-outline-path 'file t)
+ '(org-refile-use-outline-path 'file)
  '(org-startup-indented t)
  '(org-tag-alist '(("drill" . 100)))
  '(package-selected-packages
