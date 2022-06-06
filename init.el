@@ -48,14 +48,11 @@ This function should only modify configuration layer settings."
      javascript
      bm
      yaml
-     ;; finance
+     finance
      osx
      csv
      rust
      helm
-     ;; (c-c++ :variables
-     ;;        c-c++-default-mode-for-headers 'c++-mode
-     ;;        c-c++-enable-clang-support t)
      (erc :variables
           erc-server "irc.libera.chat"
           erc-nick "harumi0720"
@@ -650,7 +647,6 @@ before packages are loaded."
           org-archive-location "~/org-mode/archive.org::"
           org-startup-truncated nil
           )
-    (define-key org-mode-map (kbd "\C-ct") 'my-org/diary-titles)
     (define-key org-mode-map (kbd "\C-cd") 'org-drill))
   ;; UI setting
   (spacemacs/toggle-vi-tilde-fringe-off)
@@ -684,9 +680,26 @@ before packages are loaded."
           ("investments" "hledger -f %(ledger-file) roi")))
   (add-to-list 'auto-mode-alist '("\\.ledger" . ledger-mode))
 
+  ;; bionic reading 
+  (defun bionic-reading()
+    "Bold the first few chars of every word in current buffer."
+    (interactive)
+    (let (bounds wordBegin wordEnd wordLength charToBold)
+      (goto-char (point-min))
+      (while (forward-word)
+        (setq bounds (bounds-of-thing-at-point 'word))
+        (setq wordBegin (car bounds))
+        (setq wordEnd (cdr bounds))
+        (setq wordLength (- wordEnd wordBegin))
+        (setq charToBold (1+ (/ wordLength 2)))
+        (setq boldEndPos (+ wordBegin charToBold))
+        (put-text-property wordBegin boldEndPos 'font-lock-face 'bold)))
+    (font-lock-flush)
+    )
+
   ; personal keybinding
-  (global-set-key (kbd "C-;") 'evil-avy-goto-char)
-  (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+  (substitute-key-definition 'evil-find-char 'evil-avy-goto-char-in-line evil-normal-state-map)
+  (substitute-key-definition 'evil-find-char-backward 'evil-avy-goto-char evil-normal-state-map)
 
   ;; ispell setting
   (ispell-change-dictionary "american" t)
