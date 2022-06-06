@@ -40,8 +40,10 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      go
      helpful
-     (elfeed :variables rmh-elfeed-org-files '("~/org-mode/elfeed.org"))
-     ipython-notebook
+     (elfeed :variables
+             rmh-elfeed-org-files '("~/org-mode/elfeed.org")
+             elfeed-enable-goodies t)
+     (ipython-notebook :variables ein-backend 'jupyter)
      ;; coq
      (rust :variables
            rust-backend 'lsp)
@@ -51,11 +53,17 @@ This function should only modify configuration layer settings."
      html
      typography
      yaml
+     epub
      helm
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     erc
+     (erc :variables
+          erc-enable-notifications nil
+          erc-server-list '(("irc.libera.chat"
+                            :nick "harumi"
+                            :port "6697"
+                            :ssl t)))
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
@@ -583,7 +591,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (spacemacs/toggle-mode-line-org-clock-on)
   (setq url-proxy-services '(("http" . "localhost:7890")
-                             ("https" . "localhost:7890")))
+                             ("https" . "localhost:7890")
+                             ("rss" . "localhost:7890")))
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode nil)
   ;; automatically async git repo
@@ -633,9 +642,13 @@ you should place your code here."
 
   ;; Esperanto function setting
   (defun esperanto-change (wrong right)
-    (beginning-of-buffer)
-    (while (search-forward wrong nil t)
-      (replace-match right)))
+    (let ((current (point))
+          (start (point-min))
+          (end (point-max)))
+      (goto-char start)
+      (while (search-forward wrong nil t)
+        (replace-match right))
+      (goto-char current)))
   (defun esperanto-add-cap ()
     (interactive)
     (esperanto-change "cx" "ĉ")
@@ -650,10 +663,30 @@ you should place your code here."
     (esperanto-change "SX" "Ŝ")
     (esperanto-change "ux" "ŭ")
     (esperanto-change "UX" "Ŭ"))
+  ;; English reading helper
+  (defun english-words-bold ()
+    (interactive)
+    (let ((end (point-max))
+          (current (point))
+          (start (point-min))
+          (read-only buffer-read-only))
+      (if read-only
+          (toggle-read-only))
+      (goto-char start)
+      (while (< (point) end)
+        (message "finish output point")
+        (message (string (char-after (point))))
+        (add-text-properties (+ (point) 1) (+ (point) 2) '(face (:weight "ultra-bold")))
+        (forward-word))
+      (goto-char current)
+      (if read-only
+          (read-only-mode))
+      ))
 
   ; personal keybinding
   (global-set-key (kbd "C-;") 'evil-avy-goto-char)
-  (define-key evil-normal-state-map (kbd "f") 'evil-avy-goto-char-in-line)
+  (substitute-key-definition 'evil-find-char 'evil-avy-goto-char-in-line evil-normal-state-map)
+  (substitute-key-definition 'evil-find-char-backward 'evil-avy-goto-char-in-line evil-normal-state-map)
 
   ;; chinese support
   ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
