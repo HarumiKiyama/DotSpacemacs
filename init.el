@@ -158,7 +158,7 @@ It should only modify the values of Spacemacs settings."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
 
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
@@ -680,11 +680,13 @@ before packages are loaded."
           ("investments" "hledger -f %(ledger-file) roi")))
   (add-to-list 'auto-mode-alist '("\\.ledger" . ledger-mode))
 
-  ;; bionic reading 
+  ;; bionic reading
   (defun bionic-reading()
     "Bold the first few chars of every word in current buffer."
     (interactive)
-    (let (bounds wordBegin wordEnd wordLength charToBold)
+    (let (bounds wordBegin wordEnd wordLength charToBold (readOnly buffer-read-only))
+      (if buffer-read-only
+            (setq buffer-read-only nil))
       (goto-char (point-min))
       (while (forward-word)
         (setq bounds (bounds-of-thing-at-point 'word))
@@ -693,9 +695,9 @@ before packages are loaded."
         (setq wordLength (- wordEnd wordBegin))
         (setq charToBold (1+ (/ wordLength 2)))
         (setq boldEndPos (+ wordBegin charToBold))
-        (put-text-property wordBegin boldEndPos 'font-lock-face 'bold)))
-    (font-lock-flush)
-    )
+        (put-text-property wordBegin boldEndPos 'font-lock-face '(:foreground "red")))
+      (if readOnly
+          (setq buffer-read-only t))))
 
   ; personal keybinding
   (substitute-key-definition 'evil-find-char 'evil-avy-goto-char-in-line evil-normal-state-map)
