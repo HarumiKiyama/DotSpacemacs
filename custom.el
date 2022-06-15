@@ -65,7 +65,7 @@
  '(org-modules '(org-bbdb org-bibtex org-docview org-habit))
  '(org-outline-path-complete-in-steps nil)
  '(org-pomodoro-play-sounds t)
- '(org-refile-use-outline-path 'file)
+ '(org-refile-use-outline-path 'file t)
  '(org-startup-indented t)
  '(org-tag-alist '(("drill" . 100)))
  '(package-selected-packages
@@ -98,7 +98,7 @@
      (340 . "#94BFF3")
      (360 . "#DC8CC3")))
  '(vc-annotate-very-old-color "#DC8CC3")
- '(warning-suppress-types '((emacs)))
+ '(warning-suppress-types '((use-package) (emacs)))
  '(weechat-color-list
    (unspecified "#272822" "#20240E" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 (custom-set-faces
